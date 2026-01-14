@@ -1,5 +1,5 @@
-/* Import Outfit (Google Sans alternative) */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Import Raleway */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --color-primary: #be2b37;
@@ -22,7 +22,7 @@
   color: var(--color-primary) !important;
 }
 
-/* Force Outfit on EVERYTHING */
+/* Force Raleway on EVERYTHING */
 body,
 h1,
 h2,
@@ -44,7 +44,7 @@ h6,
 p,
 span,
 div {
-  font-family: 'Outfit', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
