@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="page-header">
       <div class="uk-container">
-        <h1>Support Our Mission</h1>
-        <p>Your generosity helps us continue our work in education, health, and social justice.</p>
-        <ul class="uk-breadcrumb">
+        <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Support Our Mission</h1>
+        <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Your generosity helps us continue our work in education, health, and social justice.</p>
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Donate</span></li>
         </ul>
@@ -34,7 +34,7 @@
         <div class="uk-grid-medium uk-child-width-1-2@s" uk-grid>
           <!-- Bank Transfer -->
           <div>
-            <div class="uk-card uk-card-default uk-card-body uk-height-1-1" style="border: 2px solid #f0f0f0;">
+            <div class="uk-card uk-card-default uk-card-body uk-height-1-1 donate-card">
               <h3 class="uk-h4"><i class="fas fa-university uk-text-primary uk-margin-small-right"></i> Bank Transfer</h3>
               <p class="uk-text-small uk-text-muted">Direct transfer to our account.</p>
               
@@ -50,7 +50,7 @@
 
           <!-- Mobile Money -->
           <div>
-            <div class="uk-card uk-card-default uk-card-body uk-height-1-1" style="border: 2px solid #f0f0f0;">
+            <div class="uk-card uk-card-default uk-card-body uk-height-1-1 donate-card">
                <h3 class="uk-h4"><i class="fas fa-mobile-alt uk-text-primary uk-margin-small-right"></i> Mobile Money</h3>
                <p class="uk-text-small uk-text-muted">Quick support via Airtel Money or Mpamba.</p>
 
@@ -74,6 +74,10 @@
 
 <style scoped>
 .shadow-lg {
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.donate-card {
+  border: 2px solid #f0f0f0;
 }
 </style>

@@ -5,7 +5,7 @@
       <div class="uk-container">
         <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Our Team</h1>
         <p uk-scrollspy="cls: uk-animation-fade; delay: 400">The dedicated leadership committed to our mission.</p>
-        <ul class="uk-breadcrumb">
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Team</span></li>
         </ul>
@@ -16,9 +16,9 @@
     <div class="uk-section">
       <div class="uk-container">
         
-        <div class="uk-text-center uk-margin-large-bottom">
-           <span class="uk-text-primary uk-text-bold uk-text-uppercase">Executive Committee</span>
-           <h2>Leadership</h2>
+        <div class="section-header">
+           <span class="section-label">Executive Committee</span>
+           <h2 class="section-title">Leadership</h2>
         </div>
 
         <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: .team-card; delay: 200">
@@ -59,9 +59,9 @@
         <hr class="uk-divider-icon uk-margin-large-top uk-margin-large-bottom">
 
         <!-- Management / Staff -->
-        <div class="uk-text-center uk-margin-large-bottom">
-           <span class="uk-text-primary uk-text-bold uk-text-uppercase">Secretariat</span>
-           <h2>Management & Staff</h2>
+        <div class="section-header">
+           <span class="section-label">Secretariat</span>
+           <h2 class="section-title">Management & Staff</h2>
         </div>
 
         <div class="uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-fade; target: .team-card; delay: 100">

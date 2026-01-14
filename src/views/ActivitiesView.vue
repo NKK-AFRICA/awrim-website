@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="page-header">
       <div class="uk-container">
-        <h1>Our Activities</h1>
-        <p>Serving communities across Malawi through various initiatives to promote justice, peace, and holistic development.</p>
-        <ul class="uk-breadcrumb">
+        <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Our Activities</h1>
+        <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Serving communities across Malawi through various initiatives to promote justice, peace, and holistic development.</p>
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Activities</span></li>
         </ul>

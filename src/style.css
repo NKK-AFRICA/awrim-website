@@ -5,6 +5,17 @@
   --color-primary: #be2b37;
   --color-primary-hover: #a11f2a;
   --color-secondary: #333;
+  --spacing-xs: 10px;
+  --spacing-sm: 20px;
+  --spacing-md: 40px;
+  --spacing-lg: 60px;
+  --spacing-xl: 80px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .uk-text-primary {
@@ -639,7 +650,7 @@ i.far {
 .faq-card {
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   margin-bottom: 15px;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -751,26 +762,72 @@ i.far {
 }
 
 /* === Gallery Polish === */
-.uk-inline-gradient {
+.gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
+  display: block;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.uk-inline-gradient::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
 }
 
-.uk-inline-gradient:hover::after {
-  opacity: 1;
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius-md);
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.05);
+}
+
+/* Gallery Filter Pills - Match Site Theme */
+ul.gallery-filters.uk-subnav-pill > .uk-active > a,
+.gallery-filters.uk-subnav-pill > .uk-active > a {
+  background-color: var(--color-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(190, 43, 55, 0.3) !important;
+}
+
+ul.gallery-filters.uk-subnav-pill > * > a,
+.gallery-filters.uk-subnav-pill > * > a {
+  color: #666 !important;
+  border-radius: 50px !important;
+  padding: 10px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-size: 0.85rem !important;
+  border: 2px solid #e5e5e5 !important;
+  background: transparent !important;
+}
+
+ul.gallery-filters.uk-subnav-pill > * > a:hover,
+.gallery-filters.uk-subnav-pill > * > a:hover {
+  background-color: transparent !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
+.gallery-filters.uk-subnav-pill > .uk-active > a:hover {
+  background-color: var(--color-primary-hover) !important;
+  color: #fff !important;
+  border-color: var(--color-primary-hover) !important;
+  box-shadow: 0 8px 25px rgba(190, 43, 55, 0.4) !important;
+  transform: translateY(-2px) !important;
 }
 
 
@@ -794,4 +851,302 @@ i.far {
 .partner-logo-circle:hover {
   transform: scale(1.05);
   border-color: var(--color-primary-hover);
+}
+
+/* === Back to Top Floating Action Button === */
+.back-to-top {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  width: 56px !important;
+  height: 56px !important;
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(190, 43, 55, 0.4) !important;
+  z-index: 999 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-decoration: none !important;
+  border: none !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) !important;
+  cursor: pointer !important;
+}
+
+/* Show button when visible class is added */
+.back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.back-to-top:hover {
+  background: var(--color-primary-hover) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 25px rgba(190, 43, 55, 0.5) !important;
+}
+
+/* Icon styling */
+.back-to-top i {
+  font-size: 1.2rem !important;
+  margin: 0 !important;
+  display: block !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  .back-to-top i {
+    font-size: 1rem;
+  }
+}
+
+/* === Utility Classes === */
+
+/* Section Labels & Titles */
+.section-label {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Button Variants */
+.uk-button-white {
+  background: white;
+  color: var(--color-primary);
+  border: none;
+}
+
+.uk-button-white:hover {
+  background: #f8f8f8;
+  color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.uk-button-outline-white {
+  background: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.uk-button-outline-white:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: white;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--color-primary), #d4736c);
+  color: white;
+  padding: 80px 0;
+}
+
+/* Page Header Breadcrumbs */
+.page-header .uk-breadcrumb {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.page-header .uk-breadcrumb a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.page-header .uk-breadcrumb a:hover {
+  color: white;
+}
+
+.page-header .uk-breadcrumb > :last-child > span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Base Card Class */
+.base-card {
+  background: #fff;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f0f0;
+}
+
+.base-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Icon Utilities */
+.icon-primary {
+  color: var(--color-primary);
+}
+
+.icon-spacing {
+  margin-right: 8px;
+}
+
+/* Form Inputs */
+.uk-input:focus,
+.uk-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(190, 43, 55, 0.1);
+}
+
+/* Date Badge Variants */
+.date-badge.alternate {
+  background: #222;
+}
+
+.date-badge.secondary {
+  background: #666;
+}
+
+/* Value Card (About Page) */
+.value-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.value-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(190, 43, 55, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--color-primary);
+  font-size: 1.8rem;
+}
+
+/* Vision & Mission Cards */
+.vision-card,
+.mission-card {
+  padding: 40px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  height: 100%;
+}
+
+.vision-card {
+  background: #fff;
+}
+
+.mission-card {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+}
+
+.mv-icon {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.mission-card .mv-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* History Badge */
+.history-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--color-primary);
+  color: white;
+  padding: 15px 25px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.history-badge span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.history-badge small {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.history-image-container {
+  position: relative;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.history-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* News Category Label */
+.news-category-label {
+  font-size: 0.7rem;
+}
+
+/* Featured File Icon */
+.file-icon-featured {
+  font-size: 4rem;
+}
+
+/* Mobile Responsive Buttons */
+@media (max-width: 640px) {
+  .uk-button-large {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .uk-button-group .uk-button-large {
+    width: auto;
+  }
 }

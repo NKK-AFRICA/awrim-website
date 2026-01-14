@@ -5,7 +5,7 @@
       <div class="uk-container">
         <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Resources & Downloads</h1>
         <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Access our repository of reports, policies, and forms.</p>
-        <ul class="uk-breadcrumb">
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Resources</span></li>
         </ul>
@@ -20,7 +20,7 @@
            <div class="featured-doc-card">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                  <div class="uk-width-auto">
-                    <i class="fas fa-file-pdf icon-pdf" style="font-size: 4rem;"></i>
+                    <i class="fas fa-file-pdf icon-pdf file-icon-featured"></i>
                  </div>
                  <div class="uk-width-expand">
                     <h3 class="uk-margin-remove-bottom">AWRIM Strategic Plan 2025-2030</h3>
@@ -37,7 +37,9 @@
             <!-- Sidebar Filter (Optional, keeping simple for now) -->
             <!-- Main Grid -->
             <div class="uk-width-1-1">
-                <h3 class="uk-heading-line uk-text-center"><span>Document Library</span></h3>
+                <div class="section-header">
+                    <h3 class="uk-heading-line"><span>Document Library</span></h3>
+                </div>
 
                 <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-fade; target: .doc-card; delay: 100">
                     

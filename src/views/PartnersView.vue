@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="page-header">
       <div class="uk-container">
-        <h1>Our Partners</h1>
-        <p>Working together with organizations and institutions to make a difference.</p>
-        <ul class="uk-breadcrumb">
+        <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Our Partners</h1>
+        <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Working together with organizations and institutions to make a difference.</p>
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Partners</span></li>
         </ul>

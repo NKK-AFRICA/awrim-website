@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="page-header">
       <div class="uk-container">
-        <h1>Contact Us</h1>
-        <p>Get in touch with the Association of Women in Religious Institutes of Malawi. We are here to listen and support.</p>
-        <ul class="uk-breadcrumb">
+        <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Contact Us</h1>
+        <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Get in touch with the Association of Women in Religious Institutes of Malawi. We are here to listen and support.</p>
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Contact</span></li>
         </ul>

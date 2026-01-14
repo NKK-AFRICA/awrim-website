@@ -5,7 +5,7 @@
       <div class="uk-container">
         <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Frequently Asked Questions</h1>
         <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Find answers to common questions about our organization, mission, and work.</p>
-        <ul class="uk-breadcrumb">
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>FAQ</span></li>
         </ul>
@@ -84,7 +84,7 @@
             <div class="uk-card uk-card-default uk-card-body section-background-accent uk-light uk-border-rounded">
                 <h3>Still have questions?</h3>
                 <p>We're here to help. Reach out to our team directly.</p>
-                <router-link to="/contact" class="uk-button uk-button-default" style="background: #fff; color: var(--color-primary); border: none;">Contact Us</router-link>
+                <router-link to="/contact" class="uk-button uk-button-white">Contact Us</router-link>
             </div>
         </div>
 

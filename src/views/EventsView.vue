@@ -5,7 +5,7 @@
       <div class="uk-container">
         <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">Events Calendar</h1>
         <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Join us for upcoming trainings, meetings, and celebrations.</p>
-        <ul class="uk-breadcrumb">
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>Events</span></li>
         </ul>
@@ -16,8 +16,8 @@
     <div class="uk-section uk-section-muted">
       <div class="uk-container uk-container-small">
         
-        <div class="uk-margin-medium-bottom">
-           <h3 class="uk-heading-line uk-text-center"><span>Upcoming Agenda</span></h3>
+        <div class="section-header">
+           <h3 class="uk-heading-line"><span>Upcoming Agenda</span></h3>
         </div>
 
         <!-- Event 1 -->
@@ -42,7 +42,7 @@
 
         <!-- Event 2 -->
         <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200">
-           <div class="date-badge" style="background: #222;">
+           <div class="date-badge alternate">
               <h2>10</h2>
               <span>FEB</span>
               <small>2026</small>
@@ -62,7 +62,7 @@
 
         <!-- Event 3 -->
         <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300">
-           <div class="date-badge" style="background: #666;">
+           <div class="date-badge secondary">
               <h2>02</h2>
               <span>MAR</span>
               <small>2026</small>

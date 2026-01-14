@@ -56,12 +56,12 @@
                         <div class="uk-navbar-right">
                              <div class="uk-navbar-item uk-visible@m">
                                 <div class="uk-button-group">
-                                   <router-link to="/donate" class="uk-button uk-button-default uk-button-small" style="color: #333; border-color: #ddd;">Donate</router-link>
+                                   <router-link to="/donate" class="uk-button uk-button-default uk-button-small">Donate</router-link>
                                    <span style="width: 16px"></span>
                                    <router-link to="/contact" class="uk-button uk-button-primary uk-button-small">Contact Us</router-link>
                                 </div>
                              </div>
-                             <a href="#" class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #mobile-nav" style="color: #333;">
+                             <a href="#" class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #mobile-nav">
                                 <i class="fas fa-bars fa-lg"></i>
                              </a>
                         </div>
@@ -182,14 +182,38 @@
       </div>
     </div>
     <!-- Back to Top -->
-    <a href="#" uk-totop uk-scroll class="back-to-top" title="Back to Top"></a>
+    <a href="#" @click.prevent="scrollToTop" class="back-to-top" :class="{ 'visible': showBackToTop }" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
 
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+
 const searchQuery = ref('');
+const showBackToTop = ref(false);
+
+const handleScroll = () => {
+  showBackToTop.value = window.scrollY > 300;
+};
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Check initial state
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <style scoped>

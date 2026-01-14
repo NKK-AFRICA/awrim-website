@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="page-header">
       <div class="uk-container">
-        <h1>News & Updates</h1>
-        <p>Latest stories, announcements, and press releases from our congregations and communities.</p>
-        <ul class="uk-breadcrumb">
+        <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">News & Updates</h1>
+        <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Latest stories, announcements, and press releases from our congregations and communities.</p>
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>News</span></li>
         </ul>
@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <div class="uk-card-body">
-                        <span class="uk-label uk-label-danger uk-margin-small-bottom" style="font-size: 0.7rem;">{{ item.category }}</span>
+                        <span class="uk-label uk-label-danger uk-margin-small-bottom news-category-label">{{ item.category }}</span>
                         <h3 class="uk-card-title uk-margin-small-top">{{ item.title }}</h3>
                         <p>{{ item.summary }}</p>
                         <router-link :to="{ name: 'news-detail', params: { id: item.id } }" class="uk-button uk-button-text">Read More</router-link>

@@ -5,7 +5,7 @@
       <div class="uk-container">
         <h1 uk-scrollspy="cls: uk-animation-slide-top-small; delay: 200">About AWRIM</h1>
         <p uk-scrollspy="cls: uk-animation-fade; delay: 400">Association of Women in Religious Institutes of Malawi: United in faith, dedicated to service.</p>
-        <ul class="uk-breadcrumb">
+        <ul class="uk-breadcrumb" uk-scrollspy="cls: uk-animation-fade; delay: 600">
            <li><router-link to="/">Home</router-link></li>
            <li><span>About Us</span></li>
         </ul>
@@ -19,14 +19,14 @@
            <div class="uk-width-1-2@m">
              <div class="history-image-container" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 200">
                <img src="https://picsum.photos/600/700?random=about" alt="AWRIM History" class="history-img">
-               <div class="history-badge">
+               <div class="history-badge" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
                  <span>1966</span>
                  <small>Established</small>
                </div>
              </div>
            </div>
            <div class="uk-width-1-2@m" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
-             <span class="uk-text-primary uk-text-bold uk-text-uppercase" style="letter-spacing: 2px;">Our Heritage</span>
+             <span class="section-label">Our Heritage</span>
              <h2 class="uk-heading-small uk-margin-small-top">A Legacy of Faith & Unity</h2>
              <p class="uk-text-large">Supporting religious women in Malawi for over five decades.</p>
              <p class="uk-text-justify">
@@ -47,14 +47,14 @@
              <div uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
                 <div class="vision-card">
                    <i class="fas fa-eye mv-icon"></i>
-                   <h3 class="uk-text-primary">Our Vision</h3>
+                   <h3>Our Vision</h3>
                    <p class="uk-text-large">"An association of committed, united and sustainable consecrated women, holistically formed and witnessing the Gospel values."</p>
                 </div>
              </div>
              <div uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 400">
                 <div class="mission-card">
                    <i class="fas fa-bullseye mv-icon"></i>
-                   <h3 style="color: #fff;">Our Mission</h3>
+                   <h3>Our Mission</h3>
                    <p class="uk-text-large">"To unite, coordinate and empower the congregations to live fully their prophetic roles by providing religious formation and skills building interventions."</p>
                 </div>
              </div>
@@ -66,12 +66,12 @@
     <div class="uk-section">
       <div class="uk-container">
         <!-- Values Grid -->
-        <div class="uk-text-center uk-margin-large-bottom">
-           <span class="uk-text-primary uk-text-bold uk-text-uppercase">Our Core Values</span>
-           <h2>What Defines Us</h2>
+        <div class="section-header">
+           <span class="section-label">Our Core Values</span>
+           <h2 class="section-title">What Defines Us</h2>
         </div>
         
-        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .value-card; delay: 100">
+        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match uk-grid-large" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .value-card; delay: 100">
             <div>
                <div class="value-card">
                   <div class="value-icon"><i class="fas fa-balance-scale"></i></div>

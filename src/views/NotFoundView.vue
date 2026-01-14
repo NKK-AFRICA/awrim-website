@@ -1,7 +1,7 @@
 <template>
-  <div class="not-found uk-flex uk-flex-center uk-flex-middle" style="min-height: 80vh; background: #f8f8f8;">
+  <div class="not-found uk-flex uk-flex-center uk-flex-middle">
     <div class="uk-text-center uk-padding">
-      <h1 class="uk-heading-2xlarge uk-margin-remove primary-color" style="font-weight: 800; opacity: 0.1;">404</h1>
+      <h1 class="uk-heading-2xlarge uk-margin-remove primary-color not-found-number">404</h1>
       <h2 class="uk-margin-medium-top">Page Not Found</h2>
       <p class="uk-text-lead">The page you are looking for might have been removed or is temporarily unavailable.</p>
       
@@ -19,7 +19,17 @@
 </template>
 
 <style scoped>
+.not-found {
+  min-height: 80vh;
+  background: #f8f8f8;
+}
+
 .primary-color {
   color: var(--color-primary);
+}
+
+.not-found-number {
+  font-weight: 800;
+  opacity: 0.1;
 }
 </style>
