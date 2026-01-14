@@ -46,12 +46,107 @@
                         <div class="navbar-nav-section uk-visible@m">
                             <ul class="main-nav" uk-navbar-nav>
                                 <li><router-link to="/" exact-active-class="router-link-active" class="nav-link">Home</router-link></li>
-                                <li><router-link to="/about" class="nav-link">About</router-link></li>
-                                <li><router-link to="/activities" class="nav-link">Activities</router-link></li>
-                                <li><router-link to="/team" class="nav-link">Team</router-link></li>
+                                
+                                <!-- About Us Dropdown -->
                                 <li class="nav-item-dropdown">
                                     <a href="#" class="nav-link">
-                                        <span>Resources</span>
+                                        <span>About Us</span>
+                                        <i class="fas fa-chevron-down nav-arrow"></i>
+                                    </a>
+                                    <div class="uk-navbar-dropdown modern-dropdown" uk-dropdown="mode: click; pos: bottom-center">
+                                        <div class="dropdown-inner">
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                <li>
+                                                    <router-link to="/about" class="dropdown-link">
+                                                        <i class="fas fa-history"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Our Story</div>
+                                                            <div class="dropdown-desc">History & background</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/team" class="dropdown-link">
+                                                        <i class="fas fa-users"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Leadership & Governance</div>
+                                                            <div class="dropdown-desc">Our leadership team</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/partners" class="dropdown-link">
+                                                        <i class="fas fa-handshake"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Partners & Affiliations</div>
+                                                            <div class="dropdown-desc">Our collaborators</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- What We Do Dropdown -->
+                                <li class="nav-item-dropdown">
+                                    <a href="#" class="nav-link">
+                                        <span>What We Do</span>
+                                        <i class="fas fa-chevron-down nav-arrow"></i>
+                                    </a>
+                                    <div class="uk-navbar-dropdown modern-dropdown" uk-dropdown="mode: click; pos: bottom-center">
+                                        <div class="dropdown-inner">
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                <li>
+                                                    <router-link to="/what-we-do" class="dropdown-link">
+                                                        <i class="fas fa-tasks"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Overview</div>
+                                                            <div class="dropdown-desc">All our activities</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/activities" class="dropdown-link">
+                                                        <i class="fas fa-project-diagram"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Programs</div>
+                                                            <div class="dropdown-desc">Current programs</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- Our Networks Dropdown -->
+                                <li class="nav-item-dropdown">
+                                    <a href="#" class="nav-link">
+                                        <span>Our Networks</span>
+                                        <i class="fas fa-chevron-down nav-arrow"></i>
+                                    </a>
+                                    <div class="uk-navbar-dropdown modern-dropdown" uk-dropdown="mode: click; pos: bottom-center">
+                                        <div class="dropdown-inner">
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                <li>
+                                                    <router-link to="/networks" class="dropdown-link">
+                                                        <i class="fas fa-network-wired"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">All Networks</div>
+                                                            <div class="dropdown-desc">Network overview</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- Latest Dropdown -->
+                                <li class="nav-item-dropdown">
+                                    <a href="#" class="nav-link">
+                                        <span>Latest</span>
                                         <i class="fas fa-chevron-down nav-arrow"></i>
                                     </a>
                                     <div class="uk-navbar-dropdown modern-dropdown" uk-dropdown="mode: click; pos: bottom-center">
@@ -61,7 +156,7 @@
                                                     <router-link to="/news" class="dropdown-link">
                                                         <i class="fas fa-newspaper"></i>
                                                         <div>
-                                                            <div class="dropdown-title">News & Updates</div>
+                                                            <div class="dropdown-title">News</div>
                                                             <div class="dropdown-desc">Latest announcements</div>
                                                         </div>
                                                     </router-link>
@@ -70,17 +165,8 @@
                                                     <router-link to="/events" class="dropdown-link">
                                                         <i class="fas fa-calendar-alt"></i>
                                                         <div>
-                                                            <div class="dropdown-title">Events Calendar</div>
+                                                            <div class="dropdown-title">Events</div>
                                                             <div class="dropdown-desc">Upcoming events</div>
-                                                        </div>
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="/gallery" class="dropdown-link">
-                                                        <i class="fas fa-images"></i>
-                                                        <div>
-                                                            <div class="dropdown-title">Photo Gallery</div>
-                                                            <div class="dropdown-desc">View our photos</div>
                                                         </div>
                                                     </router-link>
                                                 </li>
@@ -88,26 +174,49 @@
                                                     <router-link to="/resources" class="dropdown-link">
                                                         <i class="fas fa-file-download"></i>
                                                         <div>
-                                                            <div class="dropdown-title">Documents</div>
+                                                            <div class="dropdown-title">Publications</div>
                                                             <div class="dropdown-desc">Download resources</div>
                                                         </div>
                                                     </router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link to="/partners" class="dropdown-link">
-                                                        <i class="fas fa-handshake"></i>
+                                                    <router-link to="/gallery" class="dropdown-link">
+                                                        <i class="fas fa-images"></i>
                                                         <div>
-                                                            <div class="dropdown-title">Partners</div>
-                                                            <div class="dropdown-desc">Our collaborators</div>
+                                                            <div class="dropdown-title">Media Gallery</div>
+                                                            <div class="dropdown-desc">View our photos</div>
+                                                        </div>
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <!-- Join Us Dropdown -->
+                                <li class="nav-item-dropdown">
+                                    <a href="#" class="nav-link">
+                                        <span>Join Us</span>
+                                        <i class="fas fa-chevron-down nav-arrow"></i>
+                                    </a>
+                                    <div class="uk-navbar-dropdown modern-dropdown" uk-dropdown="mode: click; pos: bottom-center">
+                                        <div class="dropdown-inner">
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                <li>
+                                                    <router-link to="/join-us" class="dropdown-link">
+                                                        <i class="fas fa-user-plus"></i>
+                                                        <div>
+                                                            <div class="dropdown-title">Ways to Join</div>
+                                                            <div class="dropdown-desc">Get involved</div>
                                                         </div>
                                                     </router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link to="/faq" class="dropdown-link">
-                                                        <i class="fas fa-question-circle"></i>
+                                                    <router-link to="/contact" class="dropdown-link">
+                                                        <i class="fas fa-envelope"></i>
                                                         <div>
-                                                            <div class="dropdown-title">FAQ</div>
-                                                            <div class="dropdown-desc">Common questions</div>
+                                                            <div class="dropdown-title">Contact Us</div>
+                                                            <div class="dropdown-desc">Get in touch</div>
                                                         </div>
                                                     </router-link>
                                                 </li>
@@ -124,10 +233,6 @@
                                 <router-link to="/donate" class="action-btn donate-btn">
                                     <i class="fas fa-heart"></i>
                                     <span>Donate</span>
-                                </router-link>
-                                <router-link to="/contact" class="action-btn contact-btn">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Contact</span>
                                 </router-link>
                             </div>
                             <a href="#" class="mobile-toggle uk-hidden@m" uk-toggle="target: #mobile-nav" aria-label="Open menu">
@@ -157,57 +262,62 @@
             <div>
               <router-link to="/" class="footer-logo uk-display-block uk-margin-small-bottom">AWRIM</router-link>
               <p class="uk-text-small uk-margin-remove-top">
-                Empowering women in religious institutes to transform communities through faith, service, and unity across Malawi.
+                Association of Women in Religious Institutes of Malawi. Empowering 45 congregations to transform communities through faith, service, and unity.
               </p>
               <div class="uk-margin-top">
-                <a href="#" class="uk-icon-button uk-margin-small-right"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="uk-icon-button uk-margin-small-right"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="uk-icon-button"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="uk-icon-button uk-margin-small-right" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="uk-icon-button uk-margin-small-right" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="uk-icon-button" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
               </div>
             </div>
 
-            <!-- Column 2: Quick Links -->
+            <!-- Column 2: About & What We Do -->
             <div>
-              <h4 class="footer-heading">Quick Links</h4>
+              <h4 class="footer-heading">About & Programs</h4>
               <ul class="uk-list footer-links">
-                <li><router-link to="/about">About Us</router-link></li>
-                <li><router-link to="/activities">Our Activities</router-link></li>
+                <li><router-link to="/about">Our Story</router-link></li>
                 <li><router-link to="/team">Leadership Team</router-link></li>
-                <li><router-link to="/events">Upcoming Events</router-link></li>
+                <li><router-link to="/what-we-do">What We Do</router-link></li>
+                <li><router-link to="/activities">Our Programs</router-link></li>
+                <li><router-link to="/networks">Our Networks</router-link></li>
               </ul>
             </div>
 
-            <!-- Column 3: Resources -->
+            <!-- Column 3: Latest & Resources -->
             <div>
-              <h4 class="footer-heading">Resources</h4>
+              <h4 class="footer-heading">Latest & Resources</h4>
               <ul class="uk-list footer-links">
                 <li><router-link to="/news">News & Updates</router-link></li>
+                <li><router-link to="/events">Events</router-link></li>
+                <li><router-link to="/resources">Publications</router-link></li>
                 <li><router-link to="/gallery">Photo Gallery</router-link></li>
-                <li><router-link to="/resources">Downloads</router-link></li>
                 <li><router-link to="/partners">Our Partners</router-link></li>
               </ul>
             </div>
 
             <!-- Column 4: Contact & Newsletter -->
             <div>
-              <h4 class="footer-heading">Newsletter</h4>
-              <p class="uk-text-small">Stay updated with our latest news and events.</p>
-              <form class="uk-grid-small uk-flex-middle" uk-grid>
-                  <div class="uk-width-expand">
-                      <input class="uk-input footer-input" type="email" placeholder="Your Email">
-                  </div>
-                  <div class="uk-width-auto">
-                      <button class="uk-button uk-button-primary footer-btn" type="button">
-                          <i class="fas fa-paper-plane"></i>
-                      </button>
-                  </div>
-              </form>
-              <!-- <ul class="uk-list footer-contact uk-margin-top">
-                <li><i class="fas fa-map-marker-alt"></i> P.O. Box 1511, Lilongwe</li>
+              <h4 class="footer-heading">Contact Us</h4>
+              <ul class="uk-list footer-contact">
+                <li><i class="fas fa-map-marker-alt"></i> P.O. Box 1511, Lilongwe, Malawi</li>
                 <li><i class="fas fa-phone"></i> <a href="tel:+265888650643">+265 888 650 643</a></li>
-                <li><i class="fas fa-envelope"></i> info@awrim.mw</li>
-              </ul> -->
-              
+                <li><i class="fas fa-phone"></i> <a href="tel:+265995201632">+265 995 201 632</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:info@awrim.mw">info@awrim.mw</a></li>
+              </ul>
+              <div class="uk-margin-top">
+                <h5 class="footer-heading" style="font-size: 0.9rem; margin-bottom: 10px;">Newsletter</h5>
+                <p class="uk-text-small" style="margin-bottom: 12px;">Stay updated with our latest news and events.</p>
+                <form class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+                        <input class="uk-input footer-input" type="email" placeholder="Your Email">
+                    </div>
+                    <div class="uk-width-auto">
+                        <button class="uk-button uk-button-primary footer-btn" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -245,30 +355,39 @@
         <!-- Mobile Navigation -->
         <ul class="uk-nav uk-nav-default mobile-nav-list">
           <li><router-link to="/" class="mobile-nav-link"><i class="fas fa-home"></i> Home</router-link></li>
-          <li><router-link to="/about" class="mobile-nav-link"><i class="fas fa-info-circle"></i> About Us</router-link></li>
-          <li><router-link to="/activities" class="mobile-nav-link"><i class="fas fa-tasks"></i> Activities</router-link></li>
-          <li><router-link to="/team" class="mobile-nav-link"><i class="fas fa-users"></i> Team</router-link></li>
           
           <li class="uk-nav-divider mobile-divider"></li>
-          <li class="mobile-nav-header">Resources</li>
-          
-          <li><router-link to="/news" class="mobile-nav-link"><i class="fas fa-newspaper"></i> News & Updates</router-link></li>
-          <li><router-link to="/events" class="mobile-nav-link"><i class="fas fa-calendar-alt"></i> Events</router-link></li>
-          <li><router-link to="/gallery" class="mobile-nav-link"><i class="fas fa-images"></i> Gallery</router-link></li>
-          <li><router-link to="/resources" class="mobile-nav-link"><i class="fas fa-file-download"></i> Documents</router-link></li>
+          <li class="mobile-nav-header">About Us</li>
+          <li><router-link to="/about" class="mobile-nav-link"><i class="fas fa-info-circle"></i> Our Story</router-link></li>
+          <li><router-link to="/team" class="mobile-nav-link"><i class="fas fa-users"></i> Leadership</router-link></li>
           <li><router-link to="/partners" class="mobile-nav-link"><i class="fas fa-handshake"></i> Partners</router-link></li>
-          <li><router-link to="/faq" class="mobile-nav-link"><i class="fas fa-question-circle"></i> FAQ</router-link></li>
+          
+          <li class="uk-nav-divider mobile-divider"></li>
+          <li class="mobile-nav-header">What We Do</li>
+          <li><router-link to="/what-we-do" class="mobile-nav-link"><i class="fas fa-tasks"></i> Overview</router-link></li>
+          <li><router-link to="/activities" class="mobile-nav-link"><i class="fas fa-project-diagram"></i> Programs</router-link></li>
+          
+          <li class="uk-nav-divider mobile-divider"></li>
+          <li class="mobile-nav-header">Our Networks</li>
+          <li><router-link to="/networks" class="mobile-nav-link"><i class="fas fa-network-wired"></i> All Networks</router-link></li>
+          
+          <li class="uk-nav-divider mobile-divider"></li>
+          <li class="mobile-nav-header">Latest</li>
+          <li><router-link to="/news" class="mobile-nav-link"><i class="fas fa-newspaper"></i> News</router-link></li>
+          <li><router-link to="/events" class="mobile-nav-link"><i class="fas fa-calendar-alt"></i> Events</router-link></li>
+          <li><router-link to="/resources" class="mobile-nav-link"><i class="fas fa-file-download"></i> Publications</router-link></li>
+          <li><router-link to="/gallery" class="mobile-nav-link"><i class="fas fa-images"></i> Media Gallery</router-link></li>
+          
+          <li class="uk-nav-divider mobile-divider"></li>
+          <li class="mobile-nav-header">Join Us</li>
+          <li><router-link to="/join-us" class="mobile-nav-link"><i class="fas fa-user-plus"></i> Ways to Join</router-link></li>
+          <li><router-link to="/contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> Contact</router-link></li>
           
           <li class="uk-nav-divider mobile-divider"></li>
           
           <li>
             <router-link to="/donate" class="mobile-action-btn mobile-donate">
               <i class="fas fa-heart"></i> Donate Now
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/contact" class="mobile-action-btn mobile-contact">
-              <i class="fas fa-envelope"></i> Contact Us
             </router-link>
           </li>
         </ul>
@@ -419,7 +538,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 20px;
+  gap: 15px;
 }
 
 .navbar-logo-section {
@@ -430,7 +549,8 @@ onUnmounted(() => {
   flex: 1;
   display: flex;
   justify-content: center;
-  max-width: 600px;
+  max-width: 100%;
+  padding: 0 10px;
 }
 
 .navbar-actions-section {
@@ -498,26 +618,26 @@ onUnmounted(() => {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .nav-link {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #555 !important;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   position: relative;
-  padding: 10px 22px !important;
+  padding: 10px 18px !important;
   margin: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   overflow: hidden;
-  text-transform: uppercase;
-  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .nav-arrow {
@@ -591,9 +711,9 @@ onUnmounted(() => {
   position: relative;
 }
 
-/* Special styling for Resources dropdown */
+/* Special styling for dropdown links */
 .nav-item-dropdown .nav-link {
-  padding-right: 18px !important;
+  padding-right: 12px !important;
 }
 
 .nav-item-dropdown .nav-link:hover .nav-arrow,
@@ -676,15 +796,15 @@ onUnmounted(() => {
 /* Action Buttons */
 .navbar-actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
 }
 
 .action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 10px 18px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -692,6 +812,7 @@ onUnmounted(() => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.3px;
   border: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .action-btn i {

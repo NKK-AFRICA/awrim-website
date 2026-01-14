@@ -75,7 +75,7 @@ const newsData = [
     category: "Events",
     image: "https://picsum.photos/1200/600?random=51",
     summary: "The Major Superiors met in Lilongwe to discuss strategic goals for the upcoming year.",
-    content: "<p>Leaders from all 29 member congregations gathered to reflect on the past year's achievements and challenges. Key topics included sustainability of projects, inter-congregational collaboration, and the ongoing formation of sisters.</p>"
+    content: "<p>Leaders from all 45 member congregations gathered to reflect on the past year's achievements and challenges. Key topics included sustainability of projects, inter-congregational collaboration, and the ongoing formation of sisters.</p>"
   },
   {
     id: 3,

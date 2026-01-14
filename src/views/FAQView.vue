@@ -23,7 +23,7 @@
                <li class="faq-card uk-open">
                    <a class="uk-accordion-title" href="#">What is AWRIM?</a>
                    <div class="uk-accordion-content">
-                       <p>AWRIM stands for Association of Women in Religious Institutes of Malawi. We are a unifying body for 29 congregations of religious women working together for spiritual growth, community service, and holistic development across the country.</p>
+                       <p>AWRIM stands for Association of Women in Religious Institutes of Malawi. We are a unifying body for 45 congregations of religious women working together for spiritual growth, community service, and holistic development across the country.</p>
                    </div>
                </li>
                <li class="faq-card">

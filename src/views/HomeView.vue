@@ -15,7 +15,7 @@
              </p>
              <div class="uk-margin-large-top" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 600">
                <router-link to="/about" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">Our Mission</router-link>
-               <router-link to="/contact" class="uk-button uk-button-outline-white uk-button-large">Contact Us</router-link>
+               <router-link to="/donate" class="uk-button uk-button-outline-white uk-button-large">Donate</router-link>
              </div>
           </div>
           <div class="uk-visible@m">
@@ -52,7 +52,7 @@
          <div class="stats-bar">
            <div class="uk-grid-divider uk-child-width-1-2@s uk-child-width-1-4@m uk-text-center" uk-grid>
               <div class="stat-item">
-                 <h3>29</h3>
+                 <h3>45</h3>
                  <p>Congregations</p>
               </div>
               <div class="stat-item">
@@ -80,49 +80,141 @@
              <h2 class="section-title">Our Core Focus Areas</h2>
           </div>
 
-          <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" uk-grid>
+          <div class="uk-child-width-1-2@s uk-child-width-1-2@m uk-grid-match" uk-grid>
              <div>
                 <div class="focus-card">
                    <div class="focus-icon"><i class="fas fa-praying-hands"></i></div>
                    <h3>Spiritual Formation</h3>
-                   <p>Providing ongoing formation and retreat programs to deepen the spiritual lives of our sisters and communities.</p>
+                   <p>Organizing on-going spiritual and religious formation sessions, retreats and recollections to transform sisters into missionary disciples of Jesus Christ.</p>
                 </div>
              </div>
              <div>
                 <div class="focus-card">
-                   <div class="focus-icon"><i class="fas fa-book-reader"></i></div>
-                   <h3>Education</h3>
-                   <p>Running schools and literacy programs to ensure quality education for children and youth across the nation.</p>
+                   <div class="focus-icon"><i class="fas fa-hands-helping"></i></div>
+                   <h3>Social Development</h3>
+                   <p>Sister congregations contribute to education, early childhood development, nutrition, health and other social development sectors through various programmes.</p>
                 </div>
              </div>
              <div>
                 <div class="focus-card">
-                   <div class="focus-icon"><i class="fas fa-heartbeat"></i></div>
-                   <h3>Health & Wellness</h3>
-                   <p>Managing hospitals and clinics, bringing essential healthcare services to the most vulnerable.</p>
+                   <div class="focus-icon"><i class="fas fa-shield-alt"></i></div>
+                   <h3>Governance</h3>
+                   <p>Improved and strengthened governance and management capacity, policies, structures and systems at all levels to ensure effective coordination.</p>
                 </div>
              </div>
              <div>
                 <div class="focus-card">
-                   <div class="focus-icon"><i class="fas fa-balance-scale"></i></div>
-                   <h3>Social Justice</h3>
-                   <p>Advocating for human rights, gender equality, and dignity for all, driven by Catholic Social Teaching.</p>
+                   <div class="focus-icon"><i class="fas fa-chart-line"></i></div>
+                   <h3>Sustainability</h3>
+                   <p>AWRIM to be sustainable and self-reliant at all levels through resource mobilization, capacity building, and strategic partnerships.</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- Featured Programs -->
+    <section class="uk-section">
+       <div class="uk-container">
+          <div class="section-header">
+             <span class="section-label">Our Programs</span>
+             <h2 class="section-title">Featured Programs</h2>
+          </div>
+
+          <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match uk-grid-large" uk-grid>
+             <div>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">AACSS</h3>
+                     <p>All-Africa Conference Sister to Sister - building capacity to address HIV/AIDS and emerging chronic conditions.</p>
+                  </div>
                 </div>
              </div>
              <div>
-                <div class="focus-card">
-                   <div class="focus-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                   <h3>Charity & Relief</h3>
-                   <p>Mobilizing resources to support disaster victims, orphans, and the elderly in times of crisis.</p>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">SCORE-ECD</h3>
+                     <p>Strengthen Capacity of women Religious in Early Child Development - building capacity for ECD services.</p>
+                  </div>
                 </div>
              </div>
              <div>
-                <div class="focus-card">
-                   <div class="focus-icon"><i class="fas fa-users-cog"></i></div>
-                   <h3>Capacity Building</h3>
-                   <p>Training sisters in leadership, administration, and professional skills to manage institutions effectively.</p>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">ASEC</h3>
+                     <p>African Sisters Education Collaborative - facilitating access to education for women religious in Africa.</p>
+                  </div>
                 </div>
              </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">CCCM</h3>
+                     <p>Catholic Care for Children Malawi - ensuring children grow up in safe, loving families.</p>
+                  </div>
+                </div>
+             </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">BPE</h3>
+                     <p>Bakhita Partnership for Education - partnership for holistic education and formation in Africa.</p>
+                  </div>
+                </div>
+             </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-hover">
+                  <div class="uk-card-body">
+                     <h3 class="uk-card-title">On-Going Formation</h3>
+                     <p>Spiritual and religious formation to deepen and strengthen the spiritual life of sisters.</p>
+                  </div>
+                </div>
+             </div>
+          </div>
+
+          <div class="uk-text-center uk-margin-large-top">
+             <router-link to="/what-we-do" class="uk-button uk-button-default">View All Programs</router-link>
+          </div>
+       </div>
+    </section>
+
+    <!-- Networks Overview -->
+    <section class="uk-section uk-section-muted">
+       <div class="uk-container">
+          <div class="section-header">
+             <span class="section-label">Our Networks</span>
+             <h2 class="section-title">Network Initiatives</h2>
+          </div>
+
+          <div class="uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match" uk-grid>
+             <div>
+                <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                   <div class="uk-margin-bottom"><i class="fas fa-shield-alt fa-3x uk-text-primary"></i></div>
+                   <h4>Anti-Human Trafficking</h4>
+                </div>
+             </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                   <div class="uk-margin-bottom"><i class="fas fa-heart fa-3x uk-text-primary"></i></div>
+                   <h4>Elderly Care</h4>
+                </div>
+             </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                   <div class="uk-margin-bottom"><i class="fas fa-heartbeat fa-3x uk-text-primary"></i></div>
+                   <h4>Health Care</h4>
+                </div>
+             </div>
+             <div>
+                <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                   <div class="uk-margin-bottom"><i class="fas fa-users fa-3x uk-text-primary"></i></div>
+                   <h4>Sister-Led Youth Initiatives</h4>
+                </div>
+             </div>
+          </div>
+
+          <div class="uk-text-center uk-margin-large-top">
+             <router-link to="/networks" class="uk-button uk-button-default">Learn More About Our Networks</router-link>
           </div>
        </div>
     </section>
@@ -150,8 +242,8 @@
           <h2 class="uk-margin-remove-top">Join Us in Our Mission</h2>
           <p class="uk-text-large">Your support enables us to continue our vital work in churches, schools, and hospitals across Malawi.</p>
           <div class="uk-flex uk-flex-center uk-grid-small" uk-grid>
-             <div><router-link to="/contact" class="uk-button uk-button-white uk-button-large">Get in Touch</router-link></div>
-             <div><router-link to="/activities" class="uk-button uk-button-outline-white uk-button-large">See Our Work</router-link></div>
+             <div><router-link to="/donate" class="uk-button uk-button-white uk-button-large">Donate</router-link></div>
+             <div><router-link to="/join-us" class="uk-button uk-button-outline-white uk-button-large">Join Us</router-link></div>
           </div>
        </div>
     </section>

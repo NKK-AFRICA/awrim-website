@@ -1,5 +1,7 @@
 /* Import Raleway */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+/* Import Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
 
 :root {
   --color-primary: #be2b37;
@@ -22,41 +24,33 @@
   color: var(--color-primary) !important;
 }
 
-/* Force Raleway on EVERYTHING */
+/* Oswald for body - will inherit to all elements */
 body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.uk-heading-medium,
-.uk-heading-line,
-.uk-button,
-.uk-input,
-.uk-select,
-.uk-textarea,
-.uk-navbar-nav>li>a,
-.uk-nav-default>li>a,
-.uk-card-title,
-.uk-logo,
-.uk-text-lead,
-p,
-span,
-div {
-  font-family: 'Raleway', sans-serif !important;
+body * {
+  font-family: 'Oswald', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
+/* Preserve Font Awesome font-family for icons - must come after body rule */
+i.fas,
+i.fab,
+i.far,
+i.fal,
+i.fad,
+i.fa,
+[class^="fa-"],
+[class*=" fa-"],
+.fa,
+.fas,
+.fab,
+.far,
+.fal,
+.fad,
+svg {
+  font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
 }
+
 
 /* === Custom Button Design === */
 .uk-button {
@@ -1149,4 +1143,303 @@ ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
   .uk-button-group .uk-button-large {
     width: auto;
   }
+}
+
+/* === Enhanced Modern Card Designs === */
+
+/* Network/Activity/Program Card Enhancement */
+.enhanced-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(190, 43, 55, 0.15);
+  border-color: var(--color-primary);
+}
+
+.enhanced-card-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+}
+
+.enhanced-card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-card:hover .enhanced-card-image-wrapper img {
+  transform: scale(1.1);
+}
+
+.enhanced-card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.enhanced-card:hover .enhanced-card-image-overlay {
+  opacity: 1;
+}
+
+.enhanced-card-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.enhanced-card:hover .enhanced-card-icon {
+  background: var(--color-primary);
+  color: #fff;
+  transform: scale(1.1) rotate(5deg);
+}
+
+.enhanced-card-body {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: relative;
+}
+
+.enhanced-card-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), #d4736c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.enhanced-card:hover .enhanced-card-body::before {
+  transform: scaleX(1);
+}
+
+.enhanced-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.enhanced-card:hover .enhanced-card-title {
+  color: var(--color-primary);
+}
+
+.enhanced-card-description {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+.enhanced-card-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.enhanced-card-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.enhanced-card-link i {
+  transition: transform 0.3s ease;
+}
+
+.enhanced-card:hover .enhanced-card-link {
+  color: var(--color-primary-hover);
+}
+
+.enhanced-card:hover .enhanced-card-link i {
+  transform: translateX(4px);
+}
+
+/* Program Card (Smaller Cards) */
+.program-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 14px;
+  padding: 28px;
+  border: 2px solid #f5f5f5;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), #d4736c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.program-card:hover::before {
+  transform: scaleX(1);
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(190, 43, 55, 0.12);
+  border-color: var(--color-primary);
+  background: #fff;
+}
+
+.program-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.program-card:hover .program-card-title {
+  color: var(--color-primary);
+}
+
+.program-card-description {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* Activity Area Card (What We Do) */
+.activity-area-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #f5f5f5;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.activity-area-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 60px rgba(190, 43, 55, 0.18);
+  border-color: var(--color-primary);
+}
+
+.activity-area-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+}
+
+.activity-area-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.activity-area-card:hover .activity-area-image img {
+  transform: scale(1.15);
+}
+
+.activity-area-body {
+  padding: 32px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-area-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.activity-area-card:hover .activity-area-title {
+  color: var(--color-primary);
+}
+
+.activity-area-description {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+.activity-area-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.activity-area-link i {
+  transition: transform 0.3s ease;
+}
+
+.activity-area-card:hover .activity-area-link {
+  color: var(--color-primary-hover);
+}
+
+.activity-area-card:hover .activity-area-link i {
+  transform: translateX(5px);
 }
