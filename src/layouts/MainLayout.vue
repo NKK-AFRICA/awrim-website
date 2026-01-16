@@ -45,8 +45,6 @@
                         <!-- Navigation Links -->
                         <div class="navbar-nav-section uk-visible@m">
                             <ul class="main-nav" uk-navbar-nav>
-                                <li><router-link to="/" exact-active-class="router-link-active" class="nav-link">Home</router-link></li>
-                                
                                 <!-- About Us Dropdown -->
                                 <li class="nav-item-dropdown">
                                     <a href="#" class="nav-link">
@@ -354,8 +352,6 @@
         
         <!-- Mobile Navigation -->
         <ul class="uk-nav uk-nav-default mobile-nav-list">
-          <li><router-link to="/" class="mobile-nav-link"><i class="fas fa-home"></i> Home</router-link></li>
-          
           <li class="uk-nav-divider mobile-divider"></li>
           <li class="mobile-nav-header">About Us</li>
           <li><router-link to="/about" class="mobile-nav-link"><i class="fas fa-info-circle"></i> Our Story</router-link></li>
@@ -627,6 +623,7 @@ onUnmounted(() => {
   font-size: 0.95rem;
   color: #555 !important;
   letter-spacing: 0.4px;
+  text-transform: uppercase;
   position: relative;
   padding: 10px 18px !important;
   margin: 0;
