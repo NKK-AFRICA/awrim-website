@@ -1,104 +1,166 @@
 <template>
-  <div>
-    <!-- Header Section -->
-    <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-large-bottom">
+  <div class="space-y-6">
+    <!-- Breadcrumb Area -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h2 class="uk-text-bold uk-margin-remove">Gallery Management</h2>
-        <p class="uk-text-meta uk-margin-remove">Curate and organize your website's visual narrative.</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white/90">Media Gallery</h2>
+        <nav class="flex mt-1">
+          <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <li><router-link to="/admin" class="hover:text-brand-500">Dashboard</router-link></li>
+            <li><i class="fas fa-chevron-right text-[10px] mx-1"></i></li>
+            <li class="font-medium text-brand-500">Gallery</li>
+          </ol>
+        </nav>
       </div>
-      <button class="uk-button uk-button-primary uk-border-rounded" @click="openModal()">
-        <i class="fas fa-upload uk-margin-small-right"></i> Upload Image
+      <button 
+        @click="openModal()"
+        class="flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors shadow-theme-xs"
+      >
+        <i class="fas fa-plus"></i> Add Media
       </button>
     </div>
 
-    <!-- Management Card -->
-    <div class="admin-card">
-      <!-- Search & Filter Bar -->
-      <div class="uk-padding-small uk-background-muted uk-flex uk-flex-between uk-flex-middle" style="border-bottom: 1px solid #e2e8f0; border-radius: 16px 16px 0 0;">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="search"></span>
-          <input v-model="searchQuery" class="uk-input uk-form-width-large admin-form-input" type="text" placeholder="Search by caption or category...">
+    <!-- Filter Bar Card -->
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white/90">Visual Assets</h3>
+      <div class="relative w-full sm:w-80">
+        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+          <i class="fas fa-search"></i>
+        </span>
+        <input 
+          v-model="searchQuery"
+          type="text" 
+          placeholder="Filter by caption..." 
+          class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-lg text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+        >
+      </div>
+    </div>
+
+    <div v-if="loading" class="p-10 text-center">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div 
+        v-for="item in filteredGallery" 
+        :key="item.id"
+        class="group relative rounded-2xl border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] overflow-hidden transition-all duration-300 hover:shadow-theme-lg"
+      >
+        <div class="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
+          <img 
+            :src="item.image_url" 
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+            alt="Gallery Item"
+          >
+          <!-- Actions Overlay -->
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-sm">
+            <button 
+              @click="openModal(item)"
+              class="w-10 h-10 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-brand-50 hover:text-brand-500 transition-all transform scale-90 group-hover:scale-100"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button 
+              @click="deleteItem(item.id)"
+              class="w-10 h-10 flex items-center justify-center bg-white text-error-500 rounded-full hover:bg-error-50 transition-all transform scale-90 group-hover:scale-100"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
         </div>
-        <div class="uk-text-meta">
-          {{ filteredGallery.length }} media assets
-        </div>
-      </div>
-
-      <!-- Logic for Loading/Empty -->
-      <div v-if="loading" class="uk-padding uk-text-center">
-        <div uk-spinner="ratio: 2"></div>
-        <p class="uk-margin-small-top uk-text-muted">Loading media...</p>
-      </div>
-
-      <div v-else-if="filteredGallery.length === 0" class="uk-padding uk-text-center">
-        <i class="fas fa-images fa-3x uk-text-muted"></i>
-        <p class="uk-margin-small-top uk-text-muted">No images found matching your search.</p>
-      </div>
-
-      <!-- Grid Preview Section -->
-      <div v-else class="uk-padding">
-        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid-small" uk-grid>
-           <div v-for="item in filteredGallery" :key="item.id">
-              <div class="admin-card uk-overflow-hidden gallery-card-premium">
-                 <div class="uk-cover-container" style="height: 150px;">
-                    <img :src="item.image_url" alt="" uk-cover>
-                    <div class="gallery-card-overlay">
-                       <button class="uk-icon-button uk-margin-small-right" @click="openModal(item)"><i class="fas fa-edit"></i></button>
-                       <button class="uk-icon-button uk-button-danger" @click="deleteItem(item.id)"><i class="fas fa-trash"></i></button>
-                    </div>
-                 </div>
-                 <div class="uk-padding-small">
-                    <div class="uk-text-bold uk-text-truncate uk-text-small">{{ item.caption }}</div>
-                    <span class="admin-badge badge-warning uk-margin-small-top">{{ item.category }}</span>
-                 </div>
-              </div>
-           </div>
+        <div class="p-4">
+          <div class="text-sm font-bold text-gray-900 dark:text-white/90 truncate">{{ item.caption }}</div>
+          <div class="mt-1 flex items-center justify-between">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-500">{{ item.category }}</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Enhanced Modal -->
-    <div id="gallery-modal" uk-modal>
-      <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title uk-text-bold">{{ isEditing ? 'Edit Image Details' : 'Upload New Media' }}</h2>
+    <!-- Modal -->
+    <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="closeModal"></div>
+      <div class="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-2xl shadow-theme-xl overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white/90">
+            {{ isEditing ? 'Edit Asset' : 'Upload New Media' }}
+          </h3>
+          <button @click="closeModal" class="text-gray-400 hover:text-gray-500 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
         </div>
+        
         <form @submit.prevent="saveItem">
-          <div class="uk-modal-body">
-            <div class="uk-margin">
-              <label class="uk-form-label uk-text-bold">Select Image File</label>
-              <div class="uk-form-custom uk-width-1-1">
-                  <input type="file" ref="fileInput" @change="onFileChange" accept="image/*" :required="!isEditing" style="display: none;">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="button" @click="fileInput.click()">
-                    <i class="fas fa-file-image uk-margin-small-right"></i>
-                    {{ selectedFile ? selectedFile.name : 'Choose Image File' }}
-                  </button>
-              </div>
-              <p v-if="isEditing" class="uk-text-meta">Leave empty to keep existing image</p>
+          <div class="p-6 space-y-5">
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Caption</label>
+              <input 
+                v-model="form.caption"
+                type="text" 
+                placeholder="Enter asset description..." 
+                class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+                required
+              >
             </div>
-            <div class="uk-margin">
-              <label class="uk-form-label uk-text-bold">Caption / Title</label>
-              <input v-model="form.caption" class="uk-input admin-form-input" type="text" placeholder="Describe the image" required>
-            </div>
-            <div class="uk-margin">
-              <label class="uk-form-label uk-text-bold">Category</label>
-              <select v-model="form.category" class="uk-select admin-form-input">
-                <option value="Mission">Mission</option>
-                <option value="Events">Events</option>
+
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Category</label>
+              <select 
+                v-model="form.category" 
+                class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all appearance-none"
+                required
+              >
+                <option value="Activities">Activities</option>
                 <option value="Community">Community</option>
                 <option value="General">General</option>
               </select>
             </div>
-            <div v-if="imagePreview || form.image_url" class="uk-margin uk-cover-container uk-border-rounded" style="height: 200px;">
-               <img :src="imagePreview || form.image_url" alt="Preview" uk-cover>
+
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Asset Photo</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div v-if="imagePreview || form.image_url" class="relative group aspect-video overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                  <img :src="imagePreview || form.image_url" class="w-full h-full object-cover" />
+                </div>
+                <div class="relative h-full">
+                  <input 
+                    type="file" 
+                    ref="fileInput" 
+                    @change="onFileChange" 
+                    accept="image/*" 
+                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    :required="!isEditing && !form.image_url"
+                  >
+                  <div class="h-full min-h-[140px] w-full px-4 py-3 bg-gray-50 dark:bg-dark-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl text-sm text-center flex flex-col items-center justify-center gap-3 transition-colors hover:border-brand-500">
+                    <i class="fas fa-camera text-brand-500 text-2xl"></i>
+                    <span class="text-gray-500 font-medium">{{ selectedFile ? 'Change Photo' : 'Upload Asset' }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary uk-margin-small-left" type="submit" :disabled="uploading">
-              <span v-if="uploading"><div uk-spinner="ratio: 0.5"></div> Uploading...</span>
-              <span v-else>Save Asset</span>
+
+          <div class="px-6 py-4 bg-gray-50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-gray-800 flex items-center justify-end gap-3">
+            <button 
+              type="button"
+              @click="closeModal"
+              class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit"
+              :disabled="uploading"
+              class="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-theme-sm transition-all flex items-center gap-2 disabled:opacity-70"
+            >
+              <template v-if="uploading">
+                <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                Processing...
+              </template>
+              <template v-else>
+                {{ isEditing ? 'Confirm Changes' : 'Upload Asset' }}
+              </template>
             </button>
           </div>
         </form>
@@ -110,7 +172,6 @@
 <script setup>
 import { ref, onMounted, reactive, computed } from 'vue';
 import api from '@/services/api';
-import UIkit from 'uikit';
 
 const galleryItems = ref([]);
 const loading = ref(true);
@@ -121,20 +182,17 @@ const selectedFile = ref(null);
 const fileInput = ref(null);
 const imagePreview = ref(null);
 const uploading = ref(false);
+const showModal = ref(false);
 
 const form = reactive({
-  image_url: '',
   caption: '',
-  category: 'General'
+  category: 'General',
+  image_url: ''
 });
 
 const filteredGallery = computed(() => {
   if (!searchQuery.value) return galleryItems.value;
-  const q = searchQuery.value.toLowerCase();
-  return galleryItems.value.filter(i => 
-    i.caption.toLowerCase().includes(q) || 
-    i.category.toLowerCase().includes(q)
-  );
+  return galleryItems.value.filter(i => i.caption.toLowerCase().includes(searchQuery.value.toLowerCase()));
 });
 
 const loadGallery = async () => {
@@ -143,7 +201,7 @@ const loadGallery = async () => {
     const res = await api.getGallery();
     galleryItems.value = res.data;
   } catch (error) {
-    UIkit.notification({ message: 'Error loading gallery', status: 'danger' });
+    console.error('Fetch error:', error);
   } finally {
     loading.value = false;
   }
@@ -169,78 +227,56 @@ const openModal = (item = null) => {
   } else {
     isEditing.value = false;
     editingId.value = null;
-    form.image_url = '';
     form.caption = '';
     form.category = 'General';
+    form.image_url = '';
   }
-  UIkit.modal('#gallery-modal').show();
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 const saveItem = async () => {
   try {
     uploading.value = true;
-    
-    // Upload image if selected
     if (selectedFile.value) {
       const uploadRes = await api.uploadImage(selectedFile.value);
       form.image_url = uploadRes.data.url;
     }
-
     if (isEditing.value) {
       await api.updateGallery(editingId.value, form);
-      UIkit.notification({ message: 'Media details updated', status: 'success' });
     } else {
       await api.addGallery(form);
-      UIkit.notification({ message: 'Image added to gallery', status: 'success' });
     }
-    UIkit.modal('#gallery-modal').hide();
+    closeModal();
     loadGallery();
   } catch (error) {
-    UIkit.notification({ message: 'Error saving media', status: 'danger' });
+    console.error('Save error:', error);
   } finally {
     uploading.value = false;
   }
 };
 
 const deleteItem = async (id) => {
-  if (confirm('Are you sure you want to delete this image?')) {
+  if (confirm('Permanently remove this asset?')) {
     try {
       await api.deleteGallery(id);
-      UIkit.notification({ message: 'Image deleted', status: 'success' });
       loadGallery();
     } catch (error) {
-      UIkit.notification({ message: 'Error deleting image', status: 'danger' });
+       console.error('Delete fail:', error);
     }
   }
 };
 </script>
 
 <style scoped>
-.gallery-card-premium {
-   position: relative;
-   transition: all 0.3s ease;
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
 }
-
-.gallery-card-overlay {
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background: rgba(15, 23, 42, 0.6);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   opacity: 0;
-   transition: opacity 0.3s ease;
-   backdrop-filter: blur(2px);
-}
-
-.gallery-card-premium:hover .gallery-card-overlay {
-   opacity: 1;
-}
-
-.gallery-card-premium:hover {
-   transform: scale(1.02);
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>

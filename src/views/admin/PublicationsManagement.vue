@@ -1,75 +1,102 @@
 <template>
-  <div>
-    <!-- Header Section -->
-    <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-large-bottom">
+  <div class="space-y-6">
+    <!-- Breadcrumb Area -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h2 class="uk-text-bold uk-margin-remove">Publications & Reports</h2>
-        <p class="uk-text-meta uk-margin-remove">Manage organizational publications, research papers, and annual reports.</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white/90">Publications</h2>
+        <nav class="flex mt-1">
+          <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <li><router-link to="/admin" class="hover:text-brand-500">Dashboard</router-link></li>
+            <li><i class="fas fa-chevron-right text-[10px] mx-1"></i></li>
+            <li class="font-medium text-brand-500">Publications</li>
+          </ol>
+        </nav>
       </div>
-      <button class="uk-button uk-button-primary uk-border-rounded" @click="openModal()">
-        <i class="fas fa-file-upload uk-margin-small-right"></i> Add Publication
+      <button 
+        @click="openModal()"
+        class="flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors shadow-theme-xs"
+      >
+        <i class="fas fa-plus"></i> Add Publication
       </button>
     </div>
 
-    <!-- Management Card -->
-    <div class="admin-card">
-      <!-- Search & Filter Bar -->
-      <div class="uk-padding-small uk-background-muted uk-flex uk-flex-between uk-flex-middle" style="border-bottom: 1px solid #e2e8f0; border-radius: 16px 16px 0 0;">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="search"></span>
-          <input v-model="searchQuery" class="uk-input uk-form-width-large admin-form-input" type="text" placeholder="Search publications by title or description...">
+    <!-- Data Table Card -->
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] overflow-hidden">
+      <div class="px-5 py-4 border-b border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white/90">Publications Archive</h3>
+        <div class="relative w-full sm:w-80">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <i class="fas fa-search"></i>
+          </span>
+          <input 
+            v-model="searchQuery"
+            type="text" 
+            placeholder="Search documents..." 
+            class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-lg text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+          >
         </div>
-        <div class="uk-text-meta">
-          {{ filteredResources.length }} documents indexed
-        </div>
       </div>
 
-      <!-- Logic for Loading/Empty -->
-      <div v-if="loading" class="uk-padding uk-text-center">
-        <div uk-spinner="ratio: 2"></div>
-        <p class="uk-margin-small-top uk-text-muted">Loading archive...</p>
+      <div v-if="loading" class="p-10 text-center">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
       </div>
 
-      <div v-else-if="filteredResources.length === 0" class="uk-padding uk-text-center">
-        <i class="fas fa-book-open fa-3x uk-text-muted"></i>
-        <p class="uk-margin-small-top uk-text-muted">No publications found matching your search.</p>
-      </div>
-
-      <!-- Table Section -->
-      <div v-else class="uk-overflow-auto">
-        <table class="uk-table uk-table-middle admin-table uk-margin-remove">
+      <div v-else class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
           <thead>
-            <tr>
-              <th class="uk-table-shrink">Format</th>
-              <th>Document Details</th>
-              <th>Size</th>
-              <th>Status</th>
-              <th class="uk-text-right">Actions</th>
+            <tr class="bg-gray-50 dark:bg-white/[0.02] border-b border-gray-100 dark:border-gray-800">
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Title & Content</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Metadata</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Visibility</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="item in filteredResources" :key="item.id" :class="{ 'uk-background-muted': item.is_featured }">
-              <td>
-                <div class="uk-flex uk-flex-center">
-                   <i :class="getFileIcon(item.file_type)" class="fa-2x"></i>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tr v-for="item in filteredResources" :key="item.id" class="hover:bg-gray-50 dark:hover:bg-white/[0.01] transition-colors">
+              <td class="px-5 py-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500">
+                    <i :class="getFileIcon(item.file_type)" class="text-xl"></i>
+                  </div>
+                  <div class="max-w-xs sm:max-w-md">
+                    <div class="font-bold text-gray-900 dark:text-white/90 text-sm truncate">{{ item.title }}</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ item.description }}</div>
+                  </div>
                 </div>
               </td>
-              <td>
-                <div class="uk-text-bold">{{ item.title }}</div>
-                <div class="uk-text-meta uk-text-truncate" style="max-width: 300px; font-size: 11px;">{{ item.description }}</div>
+              <td class="px-5 py-4 text-sm text-gray-600 dark:text-gray-400">
+                <div class="font-medium">{{ item.file_type }}</div>
+                <div class="text-xs">{{ item.file_size }}</div>
               </td>
-              <td><span class="uk-text-small uk-text-muted">{{ item.file_size }}</span></td>
-              <td>
-                <span v-if="item.is_featured" class="admin-badge badge-success">Pinned</span>
-                <span v-else class="admin-badge badge-primary">Publication</span>
+              <td class="px-5 py-4">
+                <span 
+                  v-if="item.is_featured"
+                  class="inline-flex px-2 py-1 text-xs font-bold rounded-md bg-brand-50 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400"
+                >
+                  Featured
+                </span>
+                <span 
+                  v-else
+                  class="inline-flex px-2 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-600 dark:bg-white/5 dark:text-gray-400"
+                >
+                  Standard
+                </span>
               </td>
-              <td class="uk-text-right uk-text-nowrap">
-                <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-border-rounded" @click="openModal(item)">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="uk-button uk-button-danger uk-button-small uk-border-rounded" @click="deleteItem(item.id)">
-                  <i class="fas fa-trash"></i>
-                </button>
+              <td class="px-5 py-4 text-right">
+                <div class="flex items-center justify-end gap-2">
+                  <button 
+                    @click="openModal(item)"
+                    class="p-2 text-gray-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button 
+                    @click="deleteItem(item.id)"
+                    class="p-2 text-gray-400 hover:text-error-500 hover:bg-error-50 dark:hover:bg-error-500/10 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -77,70 +104,105 @@
       </div>
     </div>
 
-    <!-- Enhanced Modal -->
-    <div id="resource-modal" class="uk-modal-container" uk-modal>
-      <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title uk-text-bold">{{ isEditing ? 'Edit Publication' : 'Add New Publication' }}</h2>
+    <!-- Modal - Ported from UIkit to custom Tailwind Modal -->
+    <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="closeModal"></div>
+      <div class="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-2xl shadow-theme-xl overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white/90">
+            {{ isEditing ? 'Edit Publication' : 'Add New Publication' }}
+          </h3>
+          <button @click="closeModal" class="text-gray-400 hover:text-gray-500 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
         </div>
+        
         <form @submit.prevent="saveItem">
-          <div class="uk-modal-body">
-            <div class="uk-grid-small" uk-grid>
-               <div class="uk-width-2-3@m">
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Publication Title</label>
-                    <input v-model="form.title" class="uk-input admin-form-input" type="text" placeholder="e.g. Annual Strategic Report 2026" required>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Short Description</label>
-                    <textarea v-model="form.description" class="uk-textarea admin-form-input" rows="5" placeholder="Summary of the document's content..." required></textarea>
-                  </div>
-               </div>
-               <div class="uk-width-1-3@m">
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Document File</label>
-                    <div class="uk-form-custom uk-width-1-1">
-                        <input type="file" ref="fileInput" @change="onFileChange" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" :required="!isEditing" style="display: none;">
-                        <button class="uk-button uk-button-default uk-width-1-1" type="button" @click="fileInput.click()">
-                          <i class="fas fa-file-upload uk-margin-small-right"></i>
-                          {{ selectedFile ? selectedFile.name : 'Choose Document' }}
-                        </button>
-                    </div>
-                    <div v-if="form.file_url && !selectedFile" class="uk-margin-small-top uk-text-meta">
-                       <i class="fas fa-check-circle uk-text-success"></i> Existing file linked
-                    </div>
-                  </div>
+          <div class="p-6 space-y-5 max-h-[70vh] overflow-y-auto custom-scrollbar">
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Document Title</label>
+              <input 
+                v-model="form.title"
+                type="text" 
+                placeholder="e.g. Annual Strategic Report 2026" 
+                class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+                required
+              >
+            </div>
 
-                  <div class="uk-margin">
-                    <label class="uk-flex uk-flex-middle">
-                       <input v-model="form.is_featured" class="uk-checkbox uk-margin-small-right" type="checkbox">
-                       <span class="uk-text-bold">Feature on Homepage</span>
-                    </label>
-                    <p class="uk-text-meta" style="font-size: 11px;">Pinned items appear at the top of the publications list.</p>
-                  </div>
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Description</label>
+              <textarea 
+                v-model="form.description"
+                rows="4" 
+                placeholder="Brief summary of the document contents..." 
+                class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all resize-none"
+                required
+              ></textarea>
+            </div>
 
-                  <div class="uk-card uk-card-default uk-card-body uk-padding-small uk-margin-top" style="background: #f8fafc; border: 1px dashed #cbd5e1;">
-                     <h6 class="uk-margin-remove uk-text-uppercase" style="font-size: 10px; color: #64748b;">Auto-Detected Metadata</h6>
-                     <div class="uk-grid-collapse uk-margin-small-top" uk-grid>
-                        <div class="uk-width-1-2">
-                           <span class="uk-text-meta" style="font-size: 10px;">Format:</span>
-                           <div class="uk-text-bold" style="font-size: 12px;">{{ form.file_type || '---' }}</div>
-                        </div>
-                        <div class="uk-width-1-2">
-                           <span class="uk-text-meta" style="font-size: 10px;">Size:</span>
-                           <div class="uk-text-bold" style="font-size: 12px;">{{ form.file_size || '---' }}</div>
-                        </div>
-                     </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Upload Document</label>
+                <div class="relative">
+                  <input 
+                    type="file" 
+                    ref="fileInput" 
+                    @change="onFileChange" 
+                    accept=".pdf,.doc,.docx,.xls,.xlsx" 
+                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    :required="!isEditing"
+                  >
+                  <div class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl text-sm text-center flex flex-col items-center justify-center gap-2 transition-colors hover:border-brand-500">
+                    <i class="fas fa-cloud-upload-alt text-brand-500 text-xl"></i>
+                    <span class="text-gray-500">{{ selectedFile ? selectedFile.name : 'Choose File (PDF/DOCX)' }}</span>
                   </div>
-               </div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Metadata Preview</label>
+                <div class="p-4 bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-gray-800 rounded-xl">
+                  <div v-if="form.file_type" class="flex flex-col gap-1">
+                    <div class="flex items-center gap-2">
+                      <i :class="getFileIcon(form.file_type)" class="text-brand-500"></i>
+                      <span class="text-sm font-bold">{{ form.file_type }}</span>
+                    </div>
+                    <div class="text-xs text-gray-500">File Size: {{ form.file_size }}</div>
+                  </div>
+                  <div v-else class="text-xs text-gray-400 italic">No file selected</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 py-2">
+              <div class="relative inline-flex items-center cursor-pointer">
+                <input v-model="form.is_featured" type="checkbox" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 dark:peer-focus:ring-brand-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-brand-500"></div>
+                <span class="ml-3 text-sm font-bold text-gray-700 dark:text-gray-300">Pinned as Featured</span>
+              </div>
             </div>
           </div>
-          <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Discard</button>
-            <button class="uk-button uk-button-primary uk-margin-small-left" type="submit" :disabled="uploading">
-              <span v-if="uploading"><div uk-spinner="ratio: 0.5"></div> Uploading...</span>
-              <span v-else>Save Publication</span>
+
+          <div class="px-6 py-4 bg-gray-50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-gray-800 flex items-center justify-end gap-3">
+            <button 
+              type="button"
+              @click="closeModal"
+              class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit"
+              :disabled="uploading"
+              class="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-theme-sm transition-all flex items-center gap-2 disabled:opacity-70"
+            >
+              <template v-if="uploading">
+                <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                Uploading...
+              </template>
+              <template v-else>
+                {{ isEditing ? 'Update Publication' : 'Create Publication' }}
+              </template>
             </button>
           </div>
         </form>
@@ -152,7 +214,6 @@
 <script setup>
 import { ref, onMounted, reactive, computed } from 'vue';
 import api from '@/services/api';
-import UIkit from 'uikit';
 
 const resourcesItems = ref([]);
 const loading = ref(true);
@@ -162,6 +223,7 @@ const editingId = ref(null);
 const selectedFile = ref(null);
 const fileInput = ref(null);
 const uploading = ref(false);
+const showModal = ref(false);
 
 const form = reactive({
   title: '',
@@ -187,7 +249,7 @@ const loadResources = async () => {
     const res = await api.getResources();
     resourcesItems.value = res.data;
   } catch (error) {
-    UIkit.notification({ message: 'Error loading publications', status: 'danger' });
+    console.error('Fetch error:', error);
   } finally {
     loading.value = false;
   }
@@ -195,11 +257,11 @@ const loadResources = async () => {
 
 onMounted(loadResources);
 
-const formatBytes = (bytes, decimals = 2) => {
-  if (bytes === 0) return '0 Bytes';
+const formatBytes = (bytes, decimals = 1) => {
+  if (bytes === 0) return '0 B';
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const sizes = ['B', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
@@ -208,23 +270,18 @@ const onFileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
     selectedFile.value = file;
-    // Auto-detect extension
-    const extension = file.name.split('.').pop().toUpperCase();
-    form.file_type = extension;
-    // Auto-detect size
+    form.file_type = file.name.split('.').pop().toUpperCase();
     form.file_size = formatBytes(file.size);
   }
 };
 
 const getFileIcon = (type) => {
   switch (type) {
-    case 'PDF': return 'fas fa-file-pdf uk-text-danger';
+    case 'PDF': return 'fas fa-file-pdf text-error-500';
     case 'DOC':
-    case 'DOCX': return 'fas fa-file-word uk-text-primary';
+    case 'DOCX': return 'fas fa-file-word text-brand-500';
     case 'XLS':
-    case 'XLSX': return 'fas fa-file-excel uk-text-success';
-    case 'PPT':
-    case 'PPTX': return 'fas fa-file-powerpoint uk-text-warning';
+    case 'XLSX': return 'fas fa-file-excel text-success-500';
     default: return 'fas fa-file-alt';
   }
 };
@@ -246,31 +303,30 @@ const openModal = (item = null) => {
     form.file_url = '';
     form.is_featured = false;
   }
-  UIkit.modal('#resource-modal').show();
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 const saveItem = async () => {
   try {
     uploading.value = true;
-
-    // Upload file if selected
     if (selectedFile.value) {
-      const uploadRes = await api.uploadImage(selectedFile.value); // Reusing upload logic
+      const uploadRes = await api.uploadImage(selectedFile.value);
       form.file_url = uploadRes.data.url;
     }
-
     const payload = { ...form, is_featured: form.is_featured ? 1 : 0 };
     if (isEditing.value) {
       await api.updateResource(editingId.value, payload);
-      UIkit.notification({ message: 'Publication updated', status: 'success' });
     } else {
       await api.addResource(payload);
-      UIkit.notification({ message: 'New publication added', status: 'success' });
     }
-    UIkit.modal('#resource-modal').hide();
+    closeModal();
     loadResources();
   } catch (error) {
-    UIkit.notification({ message: 'Error saving publication', status: 'danger' });
+    console.error('Save fail:', error);
   } finally {
     uploading.value = false;
   }
@@ -280,11 +336,24 @@ const deleteItem = async (id) => {
   if (confirm('Are you sure you want to delete this publication?')) {
     try {
       await api.deleteResource(id);
-      UIkit.notification({ message: 'Publication removed', status: 'success' });
       loadResources();
     } catch (error) {
-      UIkit.notification({ message: 'Error deleting publication', status: 'danger' });
+       console.error('Delete fail:', error);
     }
   }
 };
 </script>
+
+<style scoped>
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
+.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; }
+</style>

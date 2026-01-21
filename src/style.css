@@ -1,7 +1,6 @@
-/* Import Raleway */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
-/* Import Oswald */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* Global Styles */
 
 :root {
   --color-primary: #be2b37;
@@ -24,7 +23,6 @@
   color: var(--color-primary) !important;
 }
 
-/* Oswald for body - will inherit to all elements */
 body,
 body * {
   font-family: 'Oswald', sans-serif !important;
@@ -550,123 +548,128 @@ i.far {
 }
 
 /* ==========================================================================
-   Admin Panel - Premium Design System
+   Admin Panel - TailAdmin Redesign (V6)
    ========================================================================== */
 
 :root {
-    --admin-bg: #f8fafc;
-    --admin-sidebar-bg: #0f172a;
-    --admin-primary: #4f46e5;
-    --admin-primary-hover: #4338ca;
-    --admin-accent: #10b981;
-    --admin-text-main: #1e293b;
-    --admin-text-muted: #64748b;
-    --admin-border: #e2e8f0;
-    --admin-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --admin-card-radius: 16px;
+  /* TailAdmin Classic Palette */
+  --admin-bg: #F1F5F9;
+  --admin-sidebar-bg: #1C2434;
+  --admin-sidebar-active: #333A48;
+  --admin-primary: #3C50E0;
+  --admin-primary-hover: #2D3A94;
+  --admin-surface: #FFFFFF;
+  --admin-border: #E2E8F0;
+  --admin-text-main: #1C2434;
+  --admin-text-muted: #64748B;
+  --admin-success: #10B981;
+  --admin-danger: #FB5454;
+
+  --admin-card-shadow: 0px 8px 13px -3px rgba(0, 0, 0, 0.07);
+  --admin-radius: 2px;
+  /* TailAdmin is more boxy/professional */
 }
 
 .admin-body {
-    background-color: var(--admin-bg) !important;
-    font-family: 'Outfit', sans-serif !important;
-    color: var(--admin-text-main);
+  background-color: var(--admin-bg) !important;
+  font-family: 'Inter', sans-serif !important;
+  color: var(--admin-text-main);
 }
 
-/* Sidebar Improvements */
+/* Sidebar - TailAdmin Style */
 .admin-sidebar-premium {
-    background: var(--admin-sidebar-bg);
-    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+  background: var(--admin-sidebar-bg);
+  border-right: none;
+  width: 290px !important;
 }
 
 .admin-nav-item {
-    border-radius: 10px;
-    margin: 4px 12px;
-    transition: all 0.2s ease;
-    color: #94a3b8 !important;
+  border-radius: 4px;
+  margin: 2px 16px;
+  padding: 10px 16px !important;
+  transition: background 0.2s ease, color 0.2s ease;
+  color: #DEE4EE !important;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .admin-nav-item:hover {
-    background: rgba(255,255,255,0.05);
-    color: #fff !important;
+  background: var(--admin-sidebar-active);
+  color: #FFFFFF !important;
 }
 
 .admin-nav-item.uk-active {
-    background: var(--admin-primary);
-    color: #fff !important;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  background: var(--admin-sidebar-active);
+  color: #FFFFFF !important;
 }
 
-/* Premium Cards */
+.admin-nav-item.uk-active i {
+  color: var(--admin-primary);
+}
+
+/* Elite Component Polish - TailAdmin Style */
 .admin-card {
-    background: #fff;
-    border-radius: var(--admin-card-radius);
-    border: 1px solid var(--admin-border);
-    box-shadow: var(--admin-card-shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #FFFFFF;
+  border-radius: var(--admin-radius);
+  border: 1px solid var(--admin-border);
+  box-shadow: var(--admin-card-shadow);
 }
 
 .admin-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* Table Enhancements */
-.admin-table-container {
-    background: #fff;
-    border-radius: var(--admin-card-radius);
-    border: 1px solid var(--admin-border);
-    overflow: hidden;
-}
-
-.admin-table thead th {
-    background: #f1f5f9;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    color: var(--admin-text-muted);
-    padding: 12px 20px;
-}
-
-.admin-table tbody td {
-    padding: 16px 20px;
-    vertical-align: middle;
-}
-
-/* Form Styling */
+/* Form Inputs - TailAdmin Style */
 .admin-form-input {
-    border-radius: 8px !important;
-    border: 1px solid var(--admin-border) !important;
-    padding: 10px 14px !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+  border-radius: var(--admin-radius) !important;
+  border: 1.5px solid var(--admin-border) !important;
+  padding: 12px 18px !important;
+  font-size: 14px !important;
+  background: #FFFFFF !important;
 }
 
 .admin-form-input:focus {
-    border-color: var(--admin-primary) !important;
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
+  border-color: var(--admin-primary) !important;
+  box-shadow: none !important;
 }
 
 /* Badges */
 .admin-badge {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
-.badge-success { background: #ecfdf5; color: #059669; }
-.badge-primary { background: #eef2ff; color: #4f46e5; }
-.badge-warning { background: #fffbeb; color: #d97706; }
-.badge-danger { background: #fef2f2; color: #dc2626; }
+.badge-success {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.badge-primary {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.badge-warning {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.badge-danger {
+  background: #fef2f2;
+  color: #dc2626;
+}
 
 /* Dashboard Mini Stats */
 .stat-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
 }
 
 .date-badge h2 {
@@ -904,16 +907,16 @@ i.far {
 }
 
 /* Gallery Filter Pills - Match Site Theme */
-ul.gallery-filters.uk-subnav-pill > .uk-active > a,
-.gallery-filters.uk-subnav-pill > .uk-active > a {
+ul.gallery-filters.uk-subnav-pill>.uk-active>a,
+.gallery-filters.uk-subnav-pill>.uk-active>a {
   background-color: var(--color-primary) !important;
   color: #fff !important;
   border: none !important;
   box-shadow: 0 4px 15px rgba(190, 43, 55, 0.3) !important;
 }
 
-ul.gallery-filters.uk-subnav-pill > * > a,
-.gallery-filters.uk-subnav-pill > * > a {
+ul.gallery-filters.uk-subnav-pill>*>a,
+.gallery-filters.uk-subnav-pill>*>a {
   color: #666 !important;
   border-radius: 50px !important;
   padding: 10px 24px !important;
@@ -926,8 +929,8 @@ ul.gallery-filters.uk-subnav-pill > * > a,
   background: transparent !important;
 }
 
-ul.gallery-filters.uk-subnav-pill > * > a:hover,
-.gallery-filters.uk-subnav-pill > * > a:hover {
+ul.gallery-filters.uk-subnav-pill>*>a:hover,
+.gallery-filters.uk-subnav-pill>*>a:hover {
   background-color: transparent !important;
   border-color: var(--color-primary) !important;
   color: var(--color-primary) !important;
@@ -935,8 +938,8 @@ ul.gallery-filters.uk-subnav-pill > * > a:hover,
   transform: translateY(-2px) !important;
 }
 
-ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
-.gallery-filters.uk-subnav-pill > .uk-active > a:hover {
+ul.gallery-filters.uk-subnav-pill>.uk-active>a:hover,
+.gallery-filters.uk-subnav-pill>.uk-active>a:hover {
   background-color: var(--color-primary-hover) !important;
   color: #fff !important;
   border-color: var(--color-primary-hover) !important;
@@ -1021,7 +1024,7 @@ ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
     width: 48px !important;
     height: 48px !important;
   }
-  
+
   .back-to-top i {
     font-size: 1rem;
   }
@@ -1101,7 +1104,7 @@ ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
   color: white;
 }
 
-.page-header .uk-breadcrumb > :last-child > span {
+.page-header .uk-breadcrumb> :last-child>span {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1259,7 +1262,7 @@ ul.gallery-filters.uk-subnav-pill > .uk-active > a:hover,
     width: 100%;
     margin-bottom: 10px;
   }
-  
+
   .uk-button-group .uk-button-large {
     width: auto;
   }

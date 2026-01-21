@@ -1,72 +1,85 @@
 <template>
-  <div>
-    <!-- Header Section -->
-    <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-large-bottom">
+  <div class="space-y-6">
+    <!-- Breadcrumb Area -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h2 class="uk-text-bold uk-margin-remove">News & Updates</h2>
-        <p class="uk-text-meta uk-margin-remove">Manage your website's news articles and announcements.</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white/90">News & Articles</h2>
+        <nav class="flex mt-1">
+          <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <li><router-link to="/admin" class="hover:text-brand-500">Dashboard</router-link></li>
+            <li><i class="fas fa-chevron-right text-[10px] mx-1"></i></li>
+            <li class="font-medium text-brand-500">News</li>
+          </ol>
+        </nav>
       </div>
-      <button class="uk-button uk-button-primary uk-border-rounded" @click="openModal()">
-        <i class="fas fa-plus uk-margin-small-right"></i> Create Article
+      <button 
+        @click="openModal()"
+        class="flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors shadow-theme-xs"
+      >
+        <i class="fas fa-plus"></i> Create News
       </button>
     </div>
 
-    <!-- Management Card -->
-    <div class="admin-card">
-      <!-- Search & Filter Bar -->
-      <div class="uk-padding-small uk-background-muted uk-flex uk-flex-between uk-flex-middle" style="border-bottom: 1px solid #e2e8f0; border-radius: 16px 16px 0 0;">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="search"></span>
-          <input v-model="searchQuery" class="uk-input uk-form-width-large admin-form-input" type="text" placeholder="Search by title, category or summary...">
+    <!-- Data Table Card -->
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] overflow-hidden">
+      <div class="px-5 py-4 border-b border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white/90">News Articles</h3>
+        <div class="relative w-full sm:w-80">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <i class="fas fa-search"></i>
+          </span>
+          <input 
+            v-model="searchQuery"
+            type="text" 
+            placeholder="Filter articles..." 
+            class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-lg text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+          >
         </div>
-        <div class="uk-text-meta">
-          Showing {{ filteredNews.length }} articles
-        </div>
       </div>
 
-      <!-- Logic for Loading/Empty -->
-      <div v-if="loading" class="uk-padding uk-text-center">
-        <div uk-spinner="ratio: 2"></div>
-        <p class="uk-margin-small-top uk-text-muted">Fetching articles...</p>
+      <div v-if="loading" class="p-10 text-center">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
       </div>
 
-      <div v-else-if="filteredNews.length === 0" class="uk-padding uk-text-center">
-        <i class="fas fa-folder-open fa-3x uk-text-muted"></i>
-        <p class="uk-margin-small-top uk-text-muted">No articles found matching your criteria.</p>
-      </div>
-
-      <!-- Table Section -->
-      <div v-else class="uk-overflow-auto">
-        <table class="uk-table uk-table-middle admin-table uk-margin-remove">
+      <div v-else class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
           <thead>
-            <tr>
-              <th class="uk-table-shrink">Preview</th>
-              <th>Article Title</th>
-              <th>Category</th>
-              <th>Date Published</th>
-              <th class="uk-text-right">Actions</th>
+            <tr class="bg-gray-50 dark:bg-white/[0.02] border-b border-gray-100 dark:border-gray-800">
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Thumbnail</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Headline & Snippet</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Published</th>
+              <th class="px-5 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="item in filteredNews" :key="item.id">
-              <td>
-                <div class="uk-cover-container uk-border-rounded" style="width: 60px; height: 40px;">
-                  <img :src="item.image" alt="" uk-cover>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tr v-for="item in filteredNews" :key="item.id" class="hover:bg-gray-50 dark:hover:bg-white/[0.01] transition-colors">
+              <td class="px-5 py-4 whitespace-nowrap">
+                <img :src="item.image_url" class="rounded-lg object-cover border border-gray-100 dark:border-gray-800" style="width: 48px; height: 48px;" alt="">
+              </td>
+              <td class="px-5 py-4">
+                <div class="max-w-xs sm:max-w-md lg:max-w-lg">
+                  <div class="font-bold text-gray-900 dark:text-white/90 text-sm truncate">{{ item.title }}</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">{{ item.content }}</div>
                 </div>
               </td>
-              <td>
-                <div class="uk-text-bold">{{ item.title }}</div>
-                <div class="uk-text-meta uk-text-truncate" style="max-width: 300px; font-size: 11px;">{{ item.summary }}</div>
+              <td class="px-5 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                {{ item.date }}
               </td>
-              <td><span class="admin-badge badge-primary">{{ item.category }}</span></td>
-              <td>{{ item.date }}</td>
-              <td class="uk-text-right uk-text-nowrap">
-                <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-border-rounded" @click="openModal(item)">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="uk-button uk-button-danger uk-button-small uk-border-rounded" @click="deleteItem(item.id)">
-                  <i class="fas fa-trash"></i>
-                </button>
+              <td class="px-5 py-4 text-right">
+                <div class="flex items-center justify-end gap-2">
+                  <button 
+                    @click="openModal(item)"
+                    class="p-2 text-gray-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button 
+                    @click="deleteItem(item.id)"
+                    class="p-2 text-gray-400 hover:text-error-500 hover:bg-error-50 dark:hover:bg-error-500/10 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -74,60 +87,108 @@
       </div>
     </div>
 
-    <!-- Enhanced Modal -->
-    <div id="news-modal" class="uk-modal-container" uk-modal>
-      <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title uk-text-bold">{{ isEditing ? 'Edit News Article' : 'New News Article' }}</h2>
+    <!-- Modal -->
+    <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="closeModal"></div>
+      <div class="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-2xl shadow-theme-xl overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white/90">
+            {{ isEditing ? 'Edit Article' : 'Compose News' }}
+          </h3>
+          <button @click="closeModal" class="text-gray-400 hover:text-gray-500 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
         </div>
+        
         <form @submit.prevent="saveItem">
-          <div class="uk-modal-body" uk-overflow-auto>
-            <div class="uk-grid-small" uk-grid>
-               <div class="uk-width-2-3@m">
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Article Title</label>
-                    <input v-model="form.title" class="uk-input admin-form-input" type="text" placeholder="Enter a catchy title" required>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Short Summary</label>
-                    <textarea v-model="form.summary" class="uk-textarea admin-form-input" rows="3" placeholder="Brief intro (shown in lists)" required></textarea>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Full Content</label>
-                    <textarea v-model="form.content" class="uk-textarea admin-form-input" rows="8" placeholder="The full story..."></textarea>
-                  </div>
-               </div>
-               <div class="uk-width-1-3@m">
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Category</label>
-                    <input v-model="form.category" class="uk-input admin-form-input" type="text" placeholder="e.g. Education" required>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Display Date</label>
-                    <input v-model="form.date" class="uk-input admin-form-input" type="text" placeholder="e.g. Oct 20, 2025" required>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label uk-text-bold">Feature Image File</label>
-                    <div class="uk-form-custom uk-width-1-1">
-                        <input type="file" ref="fileInput" @change="onFileChange" accept="image/*" :required="!isEditing" style="display: none;">
-                        <button class="uk-button uk-button-default uk-width-1-1" type="button" @click="fileInput.click()">
-                          <i class="fas fa-image uk-margin-small-right"></i>
-                          {{ selectedFile ? selectedFile.name : 'Choose Image' }}
-                        </button>
+          <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
+            <div class="grid grid-cols-12 gap-6">
+              <!-- Left Column: Content -->
+              <div class="col-span-12 lg:col-span-8 space-y-5">
+                <div class="space-y-2">
+                  <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Headline</label>
+                  <input 
+                    v-model="form.title"
+                    type="text" 
+                    placeholder="Enter article title..." 
+                    class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+                    required
+                  >
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Article Content</label>
+                  <textarea 
+                    v-model="form.content"
+                    rows="12" 
+                    placeholder="Full story content goes here..." 
+                    class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all resize-none"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Right Column: Sidebar Metadata -->
+              <div class="col-span-12 lg:col-span-4 space-y-5">
+                <div class="space-y-2">
+                  <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Publication Date</label>
+                  <input 
+                    v-model="form.date"
+                    type="text" 
+                    placeholder="Jan 21, 2026" 
+                    class="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-900 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:ring-2 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"
+                    required
+                  >
+                </div>
+                
+                <div class="space-y-2">
+                  <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Cover Photo</label>
+                  <div class="space-y-3">
+                    <div v-if="imagePreview || form.image_url" class="relative group aspect-video overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                      <img :src="imagePreview || form.image_url" class="w-full h-full object-cover" />
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fas fa-sync-alt text-white text-xl"></i>
+                      </div>
                     </div>
-                    <div v-if="imagePreview || form.image" class="uk-margin-small-top uk-cover-container uk-border-rounded" style="height: 150px;">
-                       <img :src="imagePreview || form.image" alt="Preview" uk-cover>
+                    <div class="relative">
+                      <input 
+                        type="file" 
+                        ref="fileInput" 
+                        @change="onFileChange" 
+                        accept="image/*" 
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        :required="!isEditing && !form.image_url"
+                      >
+                      <div class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl text-sm text-center flex items-center justify-center gap-2 transition-colors hover:border-brand-500">
+                        <i class="fas fa-camera text-brand-500"></i>
+                        <span class="text-gray-500 font-medium">{{ selectedFile ? 'Change' : 'Upload Photo' }}</span>
+                      </div>
                     </div>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Discard</button>
-            <button class="uk-button uk-button-primary uk-margin-small-left" type="submit" :disabled="uploading">
-              <span v-if="uploading"><div uk-spinner="ratio: 0.5"></div> Publishing...</span>
-              <span v-else>Save Changes</span>
+
+          <div class="px-6 py-4 bg-gray-50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-gray-800 flex items-center justify-end gap-3">
+            <button 
+              type="button"
+              @click="closeModal"
+              class="px-5 py-2 text-sm font-bold text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit"
+              :disabled="uploading"
+              class="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-theme-sm transition-all flex items-center gap-2 disabled:opacity-70"
+            >
+              <template v-if="uploading">
+                <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                Processing...
+              </template>
+              <template v-else>
+                {{ isEditing ? 'Save Changes' : 'Publish News' }}
+              </template>
             </button>
           </div>
         </form>
@@ -139,7 +200,6 @@
 <script setup>
 import { ref, onMounted, reactive, computed } from 'vue';
 import api from '@/services/api';
-import UIkit from 'uikit';
 
 const newsItems = ref([]);
 const loading = ref(true);
@@ -150,24 +210,18 @@ const selectedFile = ref(null);
 const fileInput = ref(null);
 const imagePreview = ref(null);
 const uploading = ref(false);
+const showModal = ref(false);
 
 const form = reactive({
   title: '',
-  category: '',
   date: '',
-  image: '',
-  summary: '',
-  content: ''
+  content: '',
+  image_url: ''
 });
 
 const filteredNews = computed(() => {
   if (!searchQuery.value) return newsItems.value;
-  const q = searchQuery.value.toLowerCase();
-  return newsItems.value.filter(i => 
-    i.title.toLowerCase().includes(q) || 
-    i.category.toLowerCase().includes(q) || 
-    i.summary.toLowerCase().includes(q)
-  );
+  return newsItems.value.filter(n => n.title.toLowerCase().includes(searchQuery.value.toLowerCase()));
 });
 
 const loadNews = async () => {
@@ -176,7 +230,7 @@ const loadNews = async () => {
     const res = await api.getNews();
     newsItems.value = res.data;
   } catch (error) {
-    UIkit.notification({ message: 'Error loading news', status: 'danger' });
+    console.error('Fetch error:', error);
   } finally {
     loading.value = false;
   }
@@ -203,50 +257,60 @@ const openModal = (item = null) => {
     isEditing.value = false;
     editingId.value = null;
     form.title = '';
-    form.category = '';
     form.date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    form.image = '';
-    form.summary = '';
     form.content = '';
+    form.image_url = '';
   }
-  UIkit.modal('#news-modal').show();
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 const saveItem = async () => {
   try {
     uploading.value = true;
-
-    // Upload image if selected
     if (selectedFile.value) {
       const uploadRes = await api.uploadImage(selectedFile.value);
-      form.image = uploadRes.data.url;
+      form.image_url = uploadRes.data.url;
     }
-
     if (isEditing.value) {
       await api.updateNews(editingId.value, form);
-      UIkit.notification({ message: 'Article updated successfully', status: 'success' });
     } else {
       await api.addNews(form);
-      UIkit.notification({ message: 'New article published', status: 'success' });
     }
-    UIkit.modal('#news-modal').hide();
+    closeModal();
     loadNews();
   } catch (error) {
-    UIkit.notification({ message: 'Error saving news', status: 'danger' });
+    console.error('Save error:', error);
   } finally {
     uploading.value = false;
   }
 };
 
 const deleteItem = async (id) => {
-  if (confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
+  if (confirm('Delete this article?')) {
     try {
       await api.deleteNews(id);
-      UIkit.notification({ message: 'Article deleted', status: 'success' });
       loadNews();
     } catch (error) {
-      UIkit.notification({ message: 'Error deleting news', status: 'danger' });
+       console.error('Delete fail:', error);
     }
   }
 };
 </script>
+
+<style scoped>
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
+.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; }
+</style>

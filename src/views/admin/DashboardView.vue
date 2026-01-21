@@ -1,134 +1,118 @@
 <template>
-  <div>
-    <!-- Welcome Header -->
-    <div class="uk-margin-large-bottom">
-      <h2 class="uk-text-bold uk-margin-remove">Dashboard Overview</h2>
-      <p class="uk-text-meta uk-margin-remove">Monitor your website content and organizational activity.</p>
+  <div class="space-y-6">
+    <!-- Header Area -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white/90 sm:text-3xl">Dashboard Overview</h2>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Welcome back, Thomas!</p>
+      </div>
     </div>
 
-    <!-- Stats Grid -->
-    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match" uk-grid>
-      <!-- News Stats -->
-      <div>
-        <div class="admin-card uk-card-body">
-          <div class="uk-flex uk-flex-between uk-flex-middle">
-            <div>
-              <span class="uk-text-meta uk-text-uppercase" style="font-size: 11px;">News Articles</span>
-              <h2 class="uk-margin-remove uk-text-bold">{{ newsCount }}</h2>
-            </div>
-            <div class="stat-card-icon uk-background-primary uk-light">
-              <i class="fas fa-newspaper"></i>
-            </div>
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+      <!-- News Metric -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+        <div class="flex items-center justify-center w-12 h-12 bg-brand-50 rounded-xl dark:bg-brand-500/10">
+          <i class="fas fa-newspaper text-brand-600 dark:text-brand-400 text-xl"></i>
+        </div>
+        <div class="flex items-end justify-between mt-5">
+          <div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Total News</span>
+            <h4 class="mt-2 font-bold text-gray-900 text-title-sm dark:text-white/90">{{ newsCount }}</h4>
           </div>
-          <div class="uk-margin-small-top">
-            <span class="uk-text-success uk-text-small"><i class="fas fa-arrow-up"></i> +2 this week</span>
-          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-sm font-medium bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500">
+            <i class="fas fa-arrow-up text-xs"></i> 11.0%
+          </span>
         </div>
       </div>
 
-      <!-- Events Stats -->
-      <div>
-        <div class="admin-card uk-card-body">
-          <div class="uk-flex uk-flex-between uk-flex-middle">
-            <div>
-              <span class="uk-text-meta uk-text-uppercase" style="font-size: 11px;">Upcoming Events</span>
-              <h2 class="uk-margin-remove uk-text-bold">{{ eventsCount }}</h2>
-            </div>
-            <div class="stat-card-icon uk-background-success uk-light">
-              <i class="fas fa-calendar-check"></i>
-            </div>
+      <!-- Events Metric -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+        <div class="flex items-center justify-center w-12 h-12 bg-blue-50 rounded-xl dark:bg-blue-500/10">
+          <i class="fas fa-calendar-alt text-blue-600 dark:text-blue-400 text-xl"></i>
+        </div>
+        <div class="flex items-end justify-between mt-5">
+          <div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Events</span>
+            <h4 class="mt-2 font-bold text-gray-900 text-title-sm dark:text-white/90">{{ eventsCount }}</h4>
           </div>
-          <div class="uk-margin-small-top">
-            <span class="uk-text-muted uk-text-small">Stable from last month</span>
-          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-sm font-medium bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500">
+            <i class="fas fa-arrow-up text-xs"></i> 4.3%
+          </span>
         </div>
       </div>
 
-      <!-- Gallery Stats -->
-      <div>
-        <div class="admin-card uk-card-body">
-          <div class="uk-flex uk-flex-between uk-flex-middle">
-            <div>
-              <span class="uk-text-meta uk-text-uppercase" style="font-size: 11px;">Gallery Media</span>
-              <h2 class="uk-margin-remove uk-text-bold">{{ galleryCount }}</h2>
-            </div>
-            <div class="stat-card-icon uk-background-warning uk-light">
-              <i class="fas fa-photo-video"></i>
-            </div>
+      <!-- Gallery Metric -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+        <div class="flex items-center justify-center w-12 h-12 bg-orange-50 rounded-xl dark:bg-orange-500/10">
+          <i class="fas fa-images text-orange-600 dark:text-orange-400 text-xl"></i>
+        </div>
+        <div class="flex items-end justify-between mt-5">
+          <div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Media Assets</span>
+            <h4 class="mt-2 font-bold text-gray-900 text-title-sm dark:text-white/90">{{ galleryCount }}</h4>
           </div>
-          <div class="uk-margin-small-top">
-            <span class="uk-text-warning uk-text-small"><i class="fas fa-bolt"></i> 85% storage used</span>
-          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-sm font-medium bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500">
+            <i class="fas fa-arrow-down text-xs"></i> 2.1%
+          </span>
         </div>
       </div>
 
-      <!-- Publications Stats -->
-      <div>
-        <div class="admin-card uk-card-body">
-          <div class="uk-flex uk-flex-between uk-flex-middle">
-            <div>
-              <span class="uk-text-meta uk-text-uppercase" style="font-size: 11px;">Publications</span>
-              <h2 class="uk-margin-remove uk-text-bold">{{ publicationsCount }}</h2>
-            </div>
-            <div class="stat-card-icon uk-background-danger uk-light">
-              <i class="fas fa-book"></i>
-            </div>
+      <!-- Publications Metric -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+        <div class="flex items-center justify-center w-12 h-12 bg-purple-50 rounded-xl dark:bg-purple-500/10">
+          <i class="fas fa-file-alt text-purple-600 dark:text-purple-400 text-xl"></i>
+        </div>
+        <div class="flex items-end justify-between mt-5">
+          <div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Documents</span>
+            <h4 class="mt-2 font-bold text-gray-900 text-title-sm dark:text-white/90">{{ publicationsCount }}</h4>
           </div>
-          <div class="uk-margin-small-top">
-            <span class="uk-text-success uk-text-small"><i class="fas fa-check-circle"></i> All links active</span>
-          </div>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-sm font-medium bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500">
+            <i class="fas fa-arrow-up text-xs"></i> 0.9%
+          </span>
         </div>
       </div>
     </div>
 
-    <!-- Secondary Grid -->
-    <div class="uk-grid-medium uk-margin-large-top" uk-grid>
-      <!-- Quick Actions -->
-      <div class="uk-width-2-3@m">
-        <div class="admin-card uk-card-body" style="height: 100%;">
-          <h4 class="uk-text-bold uk-margin-medium-bottom">Quick Management</h4>
-          <div class="uk-grid-small uk-child-width-1-3@s uk-text-center" uk-grid>
+    <!-- Main Content Row -->
+    <div class="grid grid-cols-12 gap-4 md:gap-6">
+      <div class="col-span-12 space-y-6 lg:col-span-8">
+        <!-- Sales Chart Mockup -->
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-7.5">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <router-link to="/admin/news" class="quick-action-btn">
-                <i class="fas fa-plus-circle fa-2x"></i>
-                <span>Add News</span>
-              </router-link>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white/90">Engagement Analytics</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Visual breakdown of content interaction</p>
             </div>
-            <div>
-              <router-link to="/admin/events" class="quick-action-btn">
-                <i class="fas fa-calendar-plus fa-2x"></i>
-                <span>New Event</span>
-              </router-link>
-            </div>
-            <div>
-              <router-link to="/admin/gallery" class="quick-action-btn">
-                <i class="fas fa-cloud-upload-alt fa-2x"></i>
-                <span>Upload Media</span>
-              </router-link>
-            </div>
+          </div>
+          <div class="mt-6 h-80 w-full bg-gray-50 dark:bg-white/5 rounded-xl border border-dashed border-gray-200 dark:border-gray-800 flex items-center justify-center">
+             <span class="text-gray-400 text-sm font-medium italic">Engagement Chart Visualization</span>
           </div>
         </div>
       </div>
 
-      <!-- Activity Feed -->
-      <div class="uk-width-1-3@m">
-        <div class="admin-card uk-card-body">
-          <h4 class="uk-text-bold uk-margin-bottom">Recent Activity</h4>
-          <ul class="uk-list uk-list-divider activity-list">
-            <li v-for="log in activities" :key="log.id">
-              <div class="uk-grid-small" uk-grid>
-                <div class="uk-width-auto">
-                  <span :class="log.color" class="activity-dot"></span>
-                </div>
-                <div class="uk-width-expand">
-                  <div class="uk-text-small uk-text-bold">{{ log.title }}</div>
-                  <div class="uk-text-meta" style="font-size: 10px;">{{ log.time }}</div>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <button class="uk-button uk-button-text uk-width-1-1 uk-margin-top">View All Activity</button>
-        </div>
+      <!-- Target/Stats sidebar -->
+      <div class="col-span-12 lg:col-span-4 space-y-6">
+         <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] md:p-7.5">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white/90">Quick Stats</h3>
+            <div class="mt-6 space-y-4">
+               <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-gray-800">
+                  <div class="flex items-center gap-3">
+                     <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Site Traffic</span>
+                  </div>
+                  <span class="text-sm font-bold">12.5k</span>
+               </div>
+               <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-gray-800">
+                  <div class="flex items-center gap-3">
+                     <span class="w-2 h-2 rounded-full bg-success-500"></span>
+                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">New Members</span>
+                  </div>
+                  <span class="text-sm font-bold">482</span>
+               </div>
+            </div>
+         </div>
       </div>
     </div>
   </div>
@@ -142,13 +126,6 @@ const newsCount = ref(0);
 const eventsCount = ref(0);
 const galleryCount = ref(0);
 const publicationsCount = ref(0);
-
-const activities = ref([
-  { id: 1, title: 'New article "Education Center" added', time: '2 hours ago', color: 'uk-text-primary' },
-  { id: 2, title: 'Event "Major Superiors AGM" updated', time: '5 hours ago', color: 'uk-text-success' },
-  { id: 3, title: '3 images uploaded to Community gallery', time: 'Yesterday', color: 'uk-text-warning' },
-  { id: 4, title: 'Constitutions Guide publication updated', time: '2 days ago', color: 'uk-text-danger' }
-]);
 
 onMounted(async () => {
   try {
@@ -165,46 +142,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-<style scoped>
-.quick-action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px;
-  background: #f8fafc;
-  border-radius: 12px;
-  color: #1e293b;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: 1px solid #e2e8f0;
-}
-
-.quick-action-btn:hover {
-  background: #4f46e5;
-  color: #fff;
-  transform: translateY(-4px);
-}
-
-.quick-action-btn i {
-  margin-bottom: 12px;
-}
-
-.quick-action-btn span {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.activity-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: block;
-  margin-top: 6px;
-  background: currentColor;
-}
-
-.activity-list li {
-  padding: 12px 0;
-}
-</style>
