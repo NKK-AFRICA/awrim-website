@@ -20,90 +20,51 @@
            <h3 class="uk-heading-line"><span>Upcoming Agenda</span></h3>
         </div>
 
-        <!-- Event 1 -->
-        <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100">
-           <div class="date-badge">
-              <h2>15</h2>
-              <span>JAN</span>
-              <small>2026</small>
-           </div>
-           <div class="event-details">
-              <h3 class="event-title">Major Superiors AGM</h3>
-              <div class="event-meta">
-                 <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
-                 <span><i class="fas fa-map-marker-alt"></i> Lilongwe C.I.C</span>
-              </div>
-              <p>Annual General Meeting for all Major Superiors to discuss strategic planning and reports.</p>
-              <div class="event-action">
-                 <router-link to="/events/agm-2026" class="uk-button uk-button-primary uk-button-small">Event Details</router-link>
-              </div>
-           </div>
+        <div v-if="eventsItems.length">
+          <!-- Dynamic Event Loop -->
+          <div v-for="(item, index) in eventsItems" :key="item.id" class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small" :style="{ 'delay': (index + 1) * 100 + 'ms' }">
+             <div class="date-badge" :class="{ 'alternate': index % 3 === 1, 'secondary': index % 3 === 2 }">
+                <h2>{{ item.day }}</h2>
+                <span>{{ item.month }}</span>
+                <small>{{ item.year }}</small>
+             </div>
+             <div class="event-details">
+                <h3 class="event-title">{{ item.title }}</h3>
+                <div class="event-meta">
+                   <span><i class="fas fa-clock"></i> {{ item.time }}</span>
+                   <span><i class="fas fa-map-marker-alt"></i> {{ item.location }}</span>
+                </div>
+                <p>{{ item.description }}</p>
+                <div class="event-action">
+                   <router-link :to="item.action_link || '#'" class="uk-button uk-button-primary uk-button-small">{{ item.action_text || 'Learn More' }}</router-link>
+                </div>
+             </div>
+          </div>
         </div>
-
-        <!-- Event 2 -->
-        <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200">
-           <div class="date-badge alternate">
-              <h2>10</h2>
-              <span>FEB</span>
-              <small>2026</small>
-           </div>
-           <div class="event-details">
-              <h3 class="event-title">Youth Leadership Workshop</h3>
-              <div class="event-meta">
-                 <span><i class="fas fa-clock"></i> 8:00 AM - 2:00 PM</span>
-                 <span><i class="fas fa-map-marker-alt"></i> Blantyre Parish Hall</span>
-              </div>
-              <p>A comprehensive training session for youth leaders from various parishes focusing on leadership skills.</p>
-              <div class="event-action">
-                 <router-link to="/events/youth-workshop" class="uk-button uk-button-default uk-button-small">Register Now</router-link>
-              </div>
-           </div>
-        </div>
-
-        <!-- Event 3 -->
-        <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300">
-           <div class="date-badge secondary">
-              <h2>02</h2>
-              <span>MAR</span>
-              <small>2026</small>
-           </div>
-           <div class="event-details">
-              <h3 class="event-title">World Day of Prayer</h3>
-              <div class="event-meta">
-                 <span><i class="fas fa-clock"></i> 2:00 PM - 5:00 PM</span>
-                 <span><i class="fas fa-map-marker-alt"></i> National Celebration (Zomba)</span>
-              </div>
-              <p>Inter-congregational prayer and reflection day. Open to all members and the public.</p>
-              <div class="event-action">
-                 <button class="uk-button uk-button-default uk-button-small">Learn More</button>
-              </div>
-           </div>
-        </div>
-
-         <!-- Event 4 -->
-        <div class="event-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 400">
-           <div class="date-badge">
-              <h2>25</h2>
-              <span>APR</span>
-              <small>2026</small>
-           </div>
-           <div class="event-details">
-              <h3 class="event-title">Strategic Planning Retreat</h3>
-              <div class="event-meta">
-                 <span><i class="fas fa-clock"></i> 3 Days</span>
-                 <span><i class="fas fa-map-marker-alt"></i> Lake Malawi Retreat Center</span>
-              </div>
-              <p>A focused retreat for the executive committee to draft the 2026-2030 strategic plan.</p>
-              <div class="event-action">
-                 <button class="uk-button uk-button-primary uk-button-small">Members Only</button>
-              </div>
-           </div>
+        <div v-else class="uk-text-center uk-margin-large-top">
+          <p class="uk-text-muted">No upcoming events scheduled at this time.</p>
         </div>
 
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import api from '@/services/api'
+
+const eventsItems = ref([])
+
+onMounted(async () => {
+  try {
+    const res = await api.getEvents()
+    eventsItems.value = res.data
+  } catch (error) {
+    console.error('Failed to load events:', error)
+  }
+})
+</script>
 
 <style scoped>
 /* Scoped styles are handled globaly in style.css */

@@ -28,40 +28,43 @@
         <ul id="gallery-grid" class="uk-switcher">
             <!-- All -->
             <li>
-                <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
-                    <div v-for="n in 9" :key="n">
-                        <a class="gallery-item uk-display-block" :href="`https://picsum.photos/800/600?random=${n + 60}`" :data-caption="`Gallery Image ${n}`">
-                            <img :src="`https://picsum.photos/600/400?random=${n + 60}`" alt="" class="gallery-image">
+                <div v-if="galleryItems.length" class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
+                    <div v-for="item in galleryItems" :key="item.id">
+                        <a class="gallery-item uk-display-block" :href="item.image_url" :data-caption="item.caption">
+                            <img :src="item.image_url" alt="" class="gallery-image">
                         </a>
                     </div>
+                </div>
+                <div v-else class="uk-text-center uk-margin-large-top">
+                  <p class="uk-text-muted">No gallery items found.</p>
                 </div>
             </li>
             <!-- Mission -->
             <li>
-                <div class="uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
-                    <div v-for="n in 3" :key="n">
-                        <a class="gallery-item uk-display-block" :href="`https://picsum.photos/800/600?random=${n + 70}`">
-                            <img :src="`https://picsum.photos/600/400?random=${n + 70}`" alt="" class="gallery-image">
+                <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
+                    <div v-for="item in filteredGallery('Mission')" :key="item.id">
+                        <a class="gallery-item uk-display-block" :href="item.image_url" :data-caption="item.caption">
+                            <img :src="item.image_url" alt="" class="gallery-image">
                         </a>
                     </div>
                 </div>
             </li>
              <!-- Events -->
             <li>
-                <div class="uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
-                    <div v-for="n in 3" :key="n">
-                        <a class="gallery-item uk-display-block" :href="`https://picsum.photos/800/600?random=${n + 80}`">
-                            <img :src="`https://picsum.photos/600/400?random=${n + 80}`" alt="" class="gallery-image">
+                <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
+                    <div v-for="item in filteredGallery('Events')" :key="item.id">
+                        <a class="gallery-item uk-display-block" :href="item.image_url" :data-caption="item.caption">
+                            <img :src="item.image_url" alt="" class="gallery-image">
                         </a>
                     </div>
                 </div>
             </li>
              <!-- Community -->
             <li>
-                <div class="uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
-                    <div v-for="n in 3" :key="n">
-                        <a class="gallery-item uk-display-block" :href="`https://picsum.photos/800/600?random=${n + 90}`">
-                            <img :src="`https://picsum.photos/600/400?random=${n + 90}`" alt="" class="gallery-image">
+                <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-large" uk-grid uk-lightbox="animation: slide">
+                    <div v-for="item in filteredGallery('Community')" :key="item.id">
+                        <a class="gallery-item uk-display-block" :href="item.image_url" :data-caption="item.caption">
+                            <img :src="item.image_url" alt="" class="gallery-image">
                         </a>
                     </div>
                 </div>
@@ -71,3 +74,25 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import api from '@/services/api';
+
+const galleryItems = ref([]);
+
+const loadGallery = async () => {
+  try {
+    const res = await api.getGallery();
+    galleryItems.value = res.data;
+  } catch (error) {
+    console.error('Failed to load gallery:', error);
+  }
+};
+
+onMounted(loadGallery);
+
+const filteredGallery = (category) => {
+  return galleryItems.value.filter(item => item.category === category);
+};
+</script>

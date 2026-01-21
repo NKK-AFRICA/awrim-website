@@ -11,20 +11,20 @@ const router = createRouter({
       component: MainLayout,
       children: [
         { path: '', name: 'home', component: HomeView, meta: { title: 'Home' } },
-        
+
         // About Us section
         { path: 'about', name: 'about', component: () => import('../views/AboutView.vue'), meta: { title: 'About Us' } },
         { path: 'team', name: 'team', component: () => import('../views/TeamView.vue'), meta: { title: 'Leadership Team' } },
         { path: 'partners', name: 'partners', component: () => import('../views/PartnersView.vue'), meta: { title: 'Our Partners' } },
-        
+
         // What We Do section
         { path: 'what-we-do', name: 'what-we-do', component: () => import('../views/WhatWeDoView.vue'), meta: { title: 'What We Do' } },
         { path: 'activities', name: 'activities', component: () => import('../views/ActivitiesView.vue'), meta: { title: 'Our Activities' } },
         { path: 'activities/:id', name: 'activity-detail', component: () => import('../views/ActivityDetailView.vue'), meta: { title: 'Activity Detail' } },
-        
+
         // Our Networks section
         { path: 'networks', name: 'networks', component: () => import('../views/NetworksView.vue'), meta: { title: 'Our Networks' } },
-        
+
         // Latest section
         { path: 'news', name: 'news', component: () => import('../views/NewsView.vue'), meta: { title: 'News & Updates' } },
         { path: 'news/:id', name: 'news-detail', component: () => import('../views/NewsDetailView.vue'), meta: { title: 'News Article' } },
@@ -32,20 +32,31 @@ const router = createRouter({
         { path: 'events/:id', name: 'event-detail', component: () => import('../views/EventDetailView.vue'), meta: { title: 'Event Detail' } },
         { path: 'resources', name: 'resources', component: () => import('../views/ResourcesView.vue'), meta: { title: 'Publications' } },
         { path: 'gallery', name: 'gallery', component: () => import('../views/GalleryView.vue'), meta: { title: 'Media Gallery' } },
-        
+
         // Join Us section
         { path: 'join-us', name: 'join-us', component: () => import('../views/JoinUsView.vue'), meta: { title: 'Join Us' } },
         { path: 'contact', name: 'contact', component: () => import('../views/ContactView.vue'), meta: { title: 'Contact Us' } },
-        
+
         // Donate
         { path: 'donate', name: 'donate', component: () => import('../views/DonateView.vue'), meta: { title: 'Donate' } },
-        
+
         // Other pages
         { path: 'faq', name: 'faq', component: () => import('../views/FAQView.vue'), meta: { title: 'FAQ' } },
         { path: 'privacy', name: 'privacy', component: () => import('../views/PrivacyView.vue'), meta: { title: 'Privacy Policy' } },
         { path: 'terms', name: 'terms', component: () => import('../views/TermsView.vue'), meta: { title: 'Terms of Use' } },
         { path: 'search', name: 'search', component: () => import('../views/SearchView.vue'), meta: { title: 'Search Results' } },
         { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('../views/NotFoundView.vue'), meta: { title: 'Page Not Found' } }
+      ]
+    },
+    {
+      path: '/admin',
+      component: () => import('../views/admin/AdminLayout.vue'),
+      children: [
+        { path: '', name: 'admin-dashboard', component: () => import('../views/admin/DashboardView.vue'), meta: { title: 'Admin Dashboard' } },
+        { path: 'news', name: 'admin-news', component: () => import('../views/admin/NewsManagement.vue'), meta: { title: 'Manage News' } },
+        { path: 'events', name: 'admin-events', component: () => import('../views/admin/EventsManagement.vue'), meta: { title: 'Manage Events' } },
+        { path: 'gallery', name: 'admin-gallery', component: () => import('../views/admin/GalleryManagement.vue'), meta: { title: 'Manage Gallery' } },
+        { path: 'publications', name: 'admin-publications', component: () => import('../views/admin/PublicationsManagement.vue'), meta: { title: 'Manage Publications' } }
       ]
     }
   ],

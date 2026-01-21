@@ -39,32 +39,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import api from '@/services/api'
 
-const newsItems = ref([
-  {
-    id: 1,
-    title: "New Education Center Opened",
-    date: "January 5, 2026",
-    category: "Education",
-    image: "https://picsum.photos/600/400?random=50",
-    summary: "AWRIM is proud to announce the opening of a new secondary school in Mzuzu, serving over 500 students."
-  },
-  {
-    id: 2,
-    title: "Annual General Meeting 2025",
-    date: "December 12, 2025",
-    category: "Events",
-    image: "https://picsum.photos/600/400?random=51",
-    summary: "The Major Superiors met in Lilongwe to discuss strategic goals for the upcoming year."
-  },
-  {
-    id: 3,
-    title: "Relief Aid for Flood Victims",
-    date: "November 20, 2025",
-    category: "Charity",
-    image: "https://picsum.photos/600/400?random=52",
-    summary: "AWRIM sisters have mobilized resources to support families affected by recent floods in the Southern Region."
+const newsItems = ref([])
+
+onMounted(async () => {
+  try {
+    const res = await api.getNews()
+    newsItems.value = res.data
+  } catch (error) {
+    console.error('Failed to load news:', error)
   }
-])
+})
 </script>
