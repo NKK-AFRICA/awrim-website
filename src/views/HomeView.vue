@@ -236,44 +236,67 @@
             <div class="section-header uk-text-center">
                <span class="section-label">Collaboration</span>
                <h2 class="section-title">Our Partners</h2>
-               <p class="uk-text-large">AWRIM works in collaboration with:</p>
+               <p class="uk-text-large uk-margin-small">AWRIM works in collaboration with leading organizations</p>
             </div>
 
-            <div class="partners-grid uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l uk-grid-match uk-text-center uk-grid-large" uk-grid>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">Episcopal Conference of Malawi (ECM)</span>
+            <!-- Partner Categories -->
+            <div class="partners-showcase uk-margin-large-top">
+               <div class="uk-grid uk-margin-top uk-child-width-1-3@m" uk-grid>
+
+                  <!-- Religious Organizations -->
+                  <div>
+                  <div class="partner-category religious-theme">
+                     <div class="partner-category-icon">
+                        <i class="fas fa-church text-2xl text-white"></i>
+                     </div>
+                     <h4 class="partner-category-title">Religious Organizations</h4>
+                     <div class="partner-category-list">
+                        <div class="partner-name">Episcopal Conference of Malawi</div>
+                        <div class="partner-name">ACWECA</div>
+                        <div class="partner-name">UISG</div>
+                     </div>
+                  </div>                     
+                  </div>
+
+                  <!-- International Partners -->
+                  <div>
+                  <div class="partner-category international-theme">
+                     <div class="partner-category-icon">
+                        <i class="fas fa-globe-africa text-2xl text-white"></i>
+                     </div>
+                     <h4 class="partner-category-title">International Aid</h4>
+                     <div class="partner-category-list">
+                        <div class="partner-name">Catholic Relief Services</div>
+                        <div class="partner-name">International NGOs</div>
+                     </div>
                   </div>
                </div>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">ACWECA</span>
+
+                  <!-- Government Ministries -->
+                  <div>
+                  <div class="partner-category government-theme">
+                     <div class="partner-category-icon">
+                        <i class="fas fa-landmark text-2xl text-white"></i>
+                     </div>
+                     <h4 class="partner-category-title">Government Ministries</h4>
+                     <div class="partner-category-list">
+                        <div class="partner-name">Ministry of Gender & Social Welfare</div>
+                        <div class="partner-name">Ministry of Health</div>
+                        <div class="partner-name">Ministry of Education</div>
+                     </div>
                   </div>
-               </div>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">CRS</span>
-                  </div>
-               </div>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">Government Ministries</span>
-                  </div>
-               </div>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">UISG</span>
-                  </div>
-               </div>
-               <div class="partner-item">
-                  <div class="partner-logo">
-                     <span class="partner-text">Other Partners</span>
                   </div>
                </div>
             </div>
-            <p class="uk-text-center uk-text-small uk-margin-large-top uk-text-muted">
-               and other national and international partners supporting the mission of consecrated life.
-            </p>
+
+
+            <!-- Call to Action -->
+            <div class="uk-text-center uk-margin-large-top">
+               <router-link to="/partners" class="uk-button uk-button-primary uk-button-large">
+                  <i class="fas fa-handshake mr-2"></i>
+                  Learn More About Our Partnerships
+               </router-link>
+            </div>
         </div>
     </section>
 
@@ -456,38 +479,111 @@
     margin: 0;
 }
 
-/* Partners */
-.partners-grid {
-    margin-top: 2rem;
+/* Partners Showcase */
+.partners-showcase {
+    margin-top: 3rem;
 }
 
-.partner-item {
-    margin-bottom: 2rem;
-}
-
-.partner-logo {
+.partner-category {
     background: #fff;
-    border-radius: 12px;
-    padding: 2rem 1rem;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
     height: 100%;
+    margin: 0 1rem 2rem 1rem;
+}
+
+
+.partner-category-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
-.partner-logo:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+.partner-category-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 3px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: subtract;
+    -webkit-mask-composite: xor;
 }
 
-.partner-text {
+/* Religious Theme */
+.religious-theme .partner-category-icon {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #a11f2a 100%);
+}
+
+.religious-theme .partner-category-icon::before {
+    background: linear-gradient(135deg, rgba(190, 43, 55, 0.3), rgba(161, 31, 42, 0.2));
+}
+
+/* International Theme */
+.international-theme .partner-category-icon {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.international-theme .partner-category-icon::before {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(29, 78, 216, 0.2));
+}
+
+/* Government Theme */
+.government-theme .partner-category-icon {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.government-theme .partner-category-icon::before {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.3), rgba(4, 120, 87, 0.2));
+}
+
+.partner-category:hover .partner-category-icon {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.partner-category-title {
+    font-size: 1.2rem;
     font-weight: 600;
     color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.partner-category-list {
+    space-y: 0.75rem;
+}
+
+.partner-name {
     font-size: 0.9rem;
-    text-align: center;
-    line-height: 1.3;
+    color: #555;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.partner-name:last-child {
+    margin-bottom: 0;
+}
+
+.additional-partners-note {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #f0f0f0;
 }
 
 /* CTA Section */
