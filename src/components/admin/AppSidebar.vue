@@ -12,18 +12,18 @@
       class="py-8 flex"
       :class="!sidebarStore.isExpanded && !sidebarStore.isHovered ? 'lg:justify-center' : 'justify-start'"
     >
-      <router-link to="/admin">
+      <router-link to="/admin" class="no-underline hover:no-underline focus:no-underline">
         <template v-if="sidebarStore.isExpanded || sidebarStore.isHovered || sidebarStore.isMobileOpen">
           <div class="flex items-center gap-2">
             <div class="bg-brand-500 p-1.5 rounded-lg flex items-center justify-center">
-              <i class="fas fa-feather-alt text-white text-xl"></i>
+              <i class="fas fa-cog text-white text-xl"></i>
             </div>
             <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">AWRIM Admin</span>
           </div>
         </template>
         <template v-else>
           <div class="bg-brand-500 p-1.5 rounded-lg flex items-center justify-center">
-            <i class="fas fa-feather-alt text-white text-lg"></i>
+            <i class="fas fa-cog text-white text-lg"></i>
           </div>
         </template>
       </router-link>
@@ -49,10 +49,10 @@
               <li v-for="item in navItems" :key="item.name">
                 <router-link
                   :to="item.path"
-                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors"
+                  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors no-underline hover:no-underline focus:no-underline"
                   :class="[
-                    $route.path === item.path 
-                      ? 'bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400' 
+                    $route.path === item.path
+                      ? 'bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400'
                       : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/[0.03]',
                     !sidebarStore.isExpanded && !sidebarStore.isHovered ? 'lg:justify-center' : ''
                   ]"
