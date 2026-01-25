@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global Styles */
 
 :root {
@@ -23,9 +27,8 @@
   color: var(--color-primary) !important;
 }
 
-body,
-body * {
-  font-family: 'Oswald', sans-serif !important;
+body {
+  font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

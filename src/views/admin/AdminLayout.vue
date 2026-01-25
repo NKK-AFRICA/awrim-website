@@ -1,7 +1,7 @@
 <template>
-  <div class="admin-layout-wrapper min-h-screen xl:flex bg-gray-50 dark:bg-gray-950">
+  <div class="admin-layout-wrapper admin-body min-h-screen xl:flex bg-gray-50 dark:bg-gray-950">
     <AppSidebar />
-    
+
     <!-- Backdrop for mobile -->
     <div 
       v-if="sidebarStore.isMobileOpen"
