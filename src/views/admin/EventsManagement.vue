@@ -41,6 +41,23 @@
         <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
       </div>
 
+      <div v-else-if="filteredEvents.length === 0" class="p-16 text-center">
+        <div class="max-w-md mx-auto">
+          <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-calendar-alt text-3xl text-gray-400"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white/90 mb-2">No Events Scheduled</h3>
+          <p class="text-gray-500 dark:text-gray-400 mb-6">Start planning your community events and gatherings by adding your first event.</p>
+          <button
+            @click="openModal()"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors"
+          >
+            <i class="fas fa-plus"></i>
+            Schedule First Event
+          </button>
+        </div>
+      </div>
+
       <div v-else class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
