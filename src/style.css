@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
+/* Override UIKit font variables before Tailwind */
+:root {
+  --uk-font-family: 'Oswald', sans-serif;
+  --uk-heading-font-family: 'Oswald', sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global Styles */
 
 :root {
@@ -23,11 +33,15 @@
   color: var(--color-primary) !important;
 }
 
-body,
-body * {
+body {
   font-family: 'Oswald', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure all UIKit components use Oswald font */
+* {
+  font-family: 'Oswald', sans-serif !important;
 }
 
 /* Preserve Font Awesome font-family for icons - must come after body rule */

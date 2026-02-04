@@ -8,7 +8,9 @@
     "api": "node api-bridge.js",
     "admin-dev": "node api-bridge.js & vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "migrate": "node migrations/migrate.js",
+    "migrate:all": "node migrations/migrate.js all"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",

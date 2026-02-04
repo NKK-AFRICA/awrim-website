@@ -41,8 +41,18 @@
              </div>
           </div>
         </div>
-        <div v-else class="uk-text-center uk-margin-large-top">
-          <p class="uk-text-muted">No upcoming events scheduled at this time.</p>
+        <div v-else class="text-center py-16">
+          <div class="max-w-md mx-auto">
+            <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-calendar-alt text-3xl text-gray-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white/90 mb-3">No Events Scheduled</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-8">There are currently no upcoming events. Stay tuned for future announcements!</p>
+            <router-link to="/" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors">
+              <i class="fas fa-home"></i>
+              Back to Home
+            </router-link>
+          </div>
         </div>
 
       </div>

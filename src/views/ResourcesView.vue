@@ -15,8 +15,23 @@
     <div class="uk-section uk-section-muted">
       <div class="uk-container">
         
+        <!-- Empty State for No Resources -->
+        <div v-if="resourcesItems.length === 0" class="text-center py-16">
+          <div class="max-w-md mx-auto">
+            <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-file-alt text-3xl text-gray-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white/90 mb-3">No Publications Yet</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-8">We're working on adding important documents and resources. Check back soon!</p>
+            <router-link to="/" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors">
+              <i class="fas fa-home"></i>
+              Back to Home
+            </router-link>
+          </div>
+        </div>
+
         <!-- Featured Resource -->
-        <div v-if="featuredResource" class="uk-margin-medium-bottom" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
+        <div v-else-if="featuredResource" class="uk-margin-medium-bottom" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
            <div class="featured-doc-card">
               <div class="uk-grid-small uk-grid-match uk-flex-middle" uk-grid>
                  <div class="uk-width-auto">
@@ -51,8 +66,18 @@
                         </div>
                     </div>
                 </div>
-                <div v-else class="uk-text-center uk-margin-large-top">
-                  <p class="uk-text-muted">No additional publications available at this time.</p>
+                <div v-else class="text-center py-16">
+                  <div class="max-w-md mx-auto">
+                    <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <i class="fas fa-file-alt text-3xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white/90 mb-3">No Publications Yet</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-8">We're working on adding important documents and resources. Check back soon!</p>
+                    <router-link to="/" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors">
+                      <i class="fas fa-home"></i>
+                      Back to Home
+                    </router-link>
+                  </div>
                 </div>
             </div>
         </div>

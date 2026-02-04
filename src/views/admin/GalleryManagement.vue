@@ -40,6 +40,23 @@
       <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
     </div>
 
+    <div v-else-if="filteredGallery.length === 0" class="p-16 text-center">
+      <div class="max-w-md mx-auto">
+        <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-images text-3xl text-gray-400"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white/90 mb-2">No Media Assets Yet</h3>
+        <p class="text-gray-500 dark:text-gray-400 mb-6">Build your media gallery by uploading photos and images to showcase your community.</p>
+        <button
+          @click="openModal()"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium rounded-lg transition-colors"
+        >
+          <i class="fas fa-plus"></i>
+          Upload First Image
+        </button>
+      </div>
+    </div>
+
     <!-- Gallery Grid -->
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div 
