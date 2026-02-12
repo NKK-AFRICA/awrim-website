@@ -6,9 +6,9 @@
       <div class="uk-container">
         <div class="uk-child-width-1-2@m uk-grid-large uk-flex-middle" uk-grid>
           <div class="uk-padding-remove-vertical">
-             <h1 class="uk-heading-medium" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
+             <h2 class="uk-heading-medium" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200" style="font-size: 3.5rem;">
                Empowering Consecrated Women to Transform Communities in Malawi
-             </h1>
+             </h2>
              <p class="uk-text-lead uk-margin-medium-top" uk-scrollspy="cls: uk-animation-fade; delay: 400">
                For more than five decades, AWRIM has united women religious across Malawi to strengthen spiritual formation, advance education and social development, and uplift the most vulnerable through compassionate service.
              </p>
@@ -222,7 +222,7 @@
                  <p>Early Childhood, Education & Health Programs</p>
               </div>
               <div class="stat-item">
-                 <h3>Thousands</h3>
+                 <h3>1000+</h3>
                  <p>Sisters Empowered Through Spiritual & Academic Formation</p>
               </div>
            </div>
@@ -241,22 +241,8 @@
 
             <!-- Partner Categories -->
             <div class="partners-showcase uk-margin-large-top">
-               <div class="uk-grid uk-margin-top uk-child-width-1-3@m" uk-grid>
+               <div class="uk-grid uk-margin-top uk-child-width-1-3@m">
 
-                  <!-- Religious Organizations -->
-                  <div>
-                  <div class="partner-category religious-theme">
-                     <div class="partner-category-icon">
-                        <i class="fas fa-church text-2xl text-white"></i>
-                     </div>
-                     <h4 class="partner-category-title">Religious Organizations</h4>
-                     <div class="partner-category-list">
-                        <div class="partner-name">Episcopal Conference of Malawi</div>
-                        <div class="partner-name">ACWECA</div>
-                        <div class="partner-name">UISG</div>
-                     </div>
-                  </div>                     
-                  </div>
 
                   <!-- International Partners -->
                   <div>
@@ -272,6 +258,27 @@
                   </div>
                </div>
 
+                  <!-- Religious Organizations -->
+                  <div>
+                  <div class="partner-category religious-theme">
+                     <div class="partner-category-icon">
+                        <i class="fas fa-church text-2xl text-white"></i>
+                     </div>
+                     <h4 class="partner-category-title">Religious Organizations</h4>
+                     <div class="partner-category-list">
+                        <div class="partner-name">MCCB</div>
+                        <div class="partner-name">ACWECA</div>
+                        <div class="partner-name">UISG</div>
+                        <div class="partner-name">CRS</div>
+                        <div class="partner-name">GHR - CCC</div>
+                        <div class="partner-name">HILTON FOUNDATION - YOUTH LEAD</div>
+                        <div class="partner-name">Missio</div>
+                        <div class="partner-name">Sisters of st Peter claver</div>
+                        <div class="partner-name">Catholic university</div>
+                     </div>
+                  </div>                     
+                  </div>
+
                   <!-- Government Ministries -->
                   <div>
                   <div class="partner-category government-theme">
@@ -283,6 +290,7 @@
                         <div class="partner-name">Ministry of Gender & Social Welfare</div>
                         <div class="partner-name">Ministry of Health</div>
                         <div class="partner-name">Ministry of Education</div>
+                        <div class="partner-name">Tevet</div>
                      </div>
                   </div>
                   </div>
@@ -463,7 +471,7 @@
 }
 
 .stat-item h3 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-primary);
     margin-bottom: 0.5rem;
@@ -492,7 +500,7 @@
     text-align: center;
     transition: box-shadow 0.3s ease;
     border: 1px solid #f0f0f0;
-    height: 100%;
+    /* height: 100%; */
     margin: 0 1rem 2rem 1rem;
 }
 
@@ -560,8 +568,8 @@
     margin-bottom: 1.5rem;
 }
 
-.partner-category-list {
-    space-y: 0.75rem;
+.partner-category-list .partner-name:not(:first-child) {
+    margin-top: 0.75rem;
 }
 
 .partner-name {

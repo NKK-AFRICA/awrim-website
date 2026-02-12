@@ -18,19 +18,33 @@
         
         <div class="section-header">
            <span class="section-label">Executive Committee</span>
-           <h2 class="section-title">Leadership</h2>
+           <h2 class="section-title">Trustees</h2>
         </div>
 
-        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: .team-card; delay: 200">
-          <div v-for="i in 3" :key="i">
+        <div class="uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: .team-card; delay: 200">
+          <div>
             <div class="team-card">
               <div class="team-card-media">
-                <img :src="`https://picsum.photos/400/400?random=${i+20}`" alt="Team Member" class="team-img">
+                <img :src="`https://placehold.co/600x1000?text=JS`" alt="Team Member" class="team-img">
               </div>
               <div class="team-card-body">
-                <h3 class="team-name">Sr. Mary Phiri {{ i }}</h3>
-                <span class="team-role">Chairperson / Superior</span>
-                <p class="uk-text-small uk-text-muted">Dedicated to service and spiritual growth since 1995.</p>
+                <h3 class="team-name">Sr. Janepher Selemani</h3>
+                <span class="team-role">Board Chairperson</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+            </div>
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=JA`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Janet Angala</h3>
+                <span class="team-role">Vice Board Chairperson</span>
                 <div class="team-socials">
                    <a href="#"><i class="fas fa-envelope"></i></a>
                    <a href="#"><i class="fas fa-phone-alt"></i></a>
@@ -38,18 +52,114 @@
               </div>
             </div>
           </div>
-           <!-- Adding a few more for structure -->
-           <div v-for="i in 2" :key="`extra-${i}`">
+
+          <div>
             <div class="team-card">
               <div class="team-card-media">
-                <img :src="`https://picsum.photos/400/400?random=${i+30}`" alt="Team Member" class="team-img">
+                <img :src="`https://placehold.co/600x1000?text=BM`" alt="Team Member" class="team-img">
               </div>
               <div class="team-card-body">
-                <h3 class="team-name">Sr. Anne Banda {{ i }}</h3>
-                <span class="team-role">Executive Member</span>
-                 <p class="uk-text-small uk-text-muted">Overseeing finance and administration.</p>
-                 <div class="team-socials">
+                <h3 class="team-name">Sr. Bernadette Mnyenyembe</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
                    <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=MA`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Martha Anastanzio</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=FB`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Florence Bande</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=AL`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Annie Lundu</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=MC`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Mary Chimalizeni</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=AB`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Agnes Banda</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-card">
+              <div class="team-card-media">
+                <img :src="`https://placehold.co/600x1000?text=CB`" alt="Team Member" class="team-img">
+              </div>
+              <div class="team-card-body">
+                <h3 class="team-name">Sr. Colletta Bester</h3>
+                <span class="team-role">Board Member</span>
+                <div class="team-socials">
+                   <a href="#"><i class="fas fa-envelope"></i></a>
+                   <a href="#"><i class="fas fa-phone-alt"></i></a>
                 </div>
               </div>
             </div>

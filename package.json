@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "api": "node api-bridge.js",
-    "admin-dev": "node api-bridge.js & vite",
+    "admin-dev": "node api-bridge.js & vite --host",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "migrate": "node migrations/migrate.js",
     "migrate:all": "node migrations/migrate.js all"
   },

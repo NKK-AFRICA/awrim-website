@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3001;
+const host = '0.0.0.0';
 
 app.use(cors());
 app.use(express.json());
@@ -35,7 +36,8 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
         console.error('Multer failed to find file. Check if field name is "image" and body is multipart.');
         return res.status(400).json({ error: 'No file uploaded' });
     }
-    const imageUrl = `http://localhost:3001/uploads/${req.file.filename}`;
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    const imageUrl = `${protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     console.log('Successfully uploaded:', imageUrl);
     res.json({ url: imageUrl });
 });
@@ -248,6 +250,6 @@ app.delete('/api/resources/:id', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`API Bridge running at http://localhost:${port}`);
+app.listen(port, host, () => {
+    console.log(`API Bridge running at http://${host}:${port}`);
 });

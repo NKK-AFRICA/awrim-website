@@ -12,9 +12,9 @@
                             <i class="fas fa-envelope"></i>
                             <span>info@awrim.mw</span>
                         </a>
-                        <a href="tel:+265888650643" class="top-bar-link">
+                        <a href="tel:+265992359631" class="top-bar-link">
                             <i class="fas fa-phone-alt"></i>
-                            <span>+265 888 650 643</span>
+                            <span>+265 992 359 631</span>
                         </a>
                     </div>
                     <div class="top-bar-right">
@@ -298,8 +298,8 @@
               <h4 class="footer-heading">Contact Us</h4>
               <ul class="uk-list footer-contact">
                 <li><i class="fas fa-map-marker-alt"></i> P.O. Box 1511, Lilongwe, Malawi</li>
-                <li><i class="fas fa-phone"></i> <a href="tel:+265888650643">+265 888 650 643</a></li>
-                <li><i class="fas fa-phone"></i> <a href="tel:+265995201632">+265 995 201 632</a></li>
+                <li><i class="fas fa-phone"></i> <a href="tel:+265899656063">+265 899 656 063</a></li>
+                <li><i class="fas fa-phone"></i> <a href="tel:+265992359631">+265 992 359 631</a></li>
                 <li><i class="fas fa-envelope"></i> <a href="mailto:info@awrim.mw">info@awrim.mw</a></li>
               </ul>
               <div class="uk-margin-top">

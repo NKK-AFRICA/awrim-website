@@ -473,8 +473,8 @@ i.far {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -961,6 +961,9 @@ ul.gallery-filters.uk-subnav-pill>.uk-active>a:hover,
   transform: translateY(-2px) !important;
 }
 
+i.fas, i.fab, i.far {
+   margin-right: 0px !important; 
+}
 
 /* === Circular Logos === */
 .partner-logo {

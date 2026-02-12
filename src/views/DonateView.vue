@@ -18,7 +18,7 @@
         
         <div class="uk-card uk-card-default uk-card-body uk-margin-bottom shadow-lg">
           <h2 class="uk-card-title uk-text-primary uk-text-bold">Why Donate?</h2>
-          <p class="uk-text-large">
+          <p class="uk-text-default uk-padding-small">
             AWRIM relies on the support of partners and people of goodwill to fund its Secretariat activities and coordinate the diverse ministries of women religious in Malawi.
           </p>
           <p>
@@ -56,7 +56,7 @@
 
                <div class="uk-background-muted uk-padding-small uk-border-rounded">
                  <p class="uk-margin-remove"><strong>Airtel Money:</strong> +265 999 999 999</p>
-                 <p class="uk-margin-remove"><strong>Mpamba:</strong> +265 888 650 643</p>
+                 <p class="uk-margin-remove"><strong>TNM Mpamba:</strong> +265 888 650 643</p>
                </div>
             </div>
           </div>
@@ -64,6 +64,7 @@
 
         <div class="uk-margin-large-top uk-text-center">
           <p class="uk-text-meta">For international donations or specific project funding, please contact us directly.</p>
+          <br/>
           <router-link to="/contact" class="uk-button uk-button-primary">Contact Finance Team</router-link>
         </div>
 
