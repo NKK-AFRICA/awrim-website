@@ -28,6 +28,11 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          BASE_PATH: '/awrim-website/'
+
+      - name: SPA fallback for GitHub Pages
+        run: cp ./dist/index.html ./dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
