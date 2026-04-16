@@ -166,31 +166,6 @@
           </div>
         </div>
 
-        <hr class="uk-divider-icon uk-margin-large-top uk-margin-large-bottom">
-
-        <!-- Management / Staff -->
-        <div class="section-header">
-           <span class="section-label">Secretariat</span>
-           <h2 class="section-title">Management & Staff</h2>
-        </div>
-
-        <div class="uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-fade; target: .team-card; delay: 100">
-           <div v-for="j in 4" :key="j">
-             <div class="team-card team-card-small">
-                <div class="team-card-media">
-                   <img :src="`https://picsum.photos/300/300?random=${j+50}`" alt="Staff Member" class="team-img">
-                </div>
-                <div class="team-card-body">
-                   <h4 class="team-name">John Doe {{ j }}</h4>
-                   <span class="team-role">Program Coordinator</span>
-                   <div class="team-socials uk-margin-small-top">
-                      <a href="#"><i class="fas fa-envelope"></i></a>
-                   </div>
-                </div>
-             </div>
-           </div>
-        </div>
-
       </div>
     </div>
   </div>
